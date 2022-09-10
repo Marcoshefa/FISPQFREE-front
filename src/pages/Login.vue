@@ -1,14 +1,15 @@
 <template>
-  <section class="login">
-    <img src="@/assets/images/logo.png" alt="Logo Float News - Float Academy" />
+  <section class="fundo">
+    <img id="tela"src="@/assets/images/tela.png" alt="Tela login" />
+    
+    <div class="login">
+      <img id="background_title" src="@/assets/images/f_title.png" alt="backgroud_title" />
+      <p>FISPQ FREE</p>
+    </div>
 
     <div class="container">
-      <div class="title">
-        <p>Painel Administrativo</p>
-      </div>
-
       <form class="form">
-        <p>Entre com suas credencias</p>
+      <img src="@/assets/images/logoFF.png" alt="Tela login" />
 
         <div class="box-inputs">
           <input type="email" placeholder="Digite seu e-mail" v-model="email" />
@@ -65,106 +66,108 @@ export default {
 </script>
 
 <style scoped>
-.login {
+
+.fundo img#tela {
+  width: 1980px;
+  height: 1080px;
+}
+
+.fundo {
+  background: url("../assets/images/tela.png");
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: -1080px;
 }
 
-.login img {
-  width: 260px;
+.fundo .container .form img#logo{
+  width: 200px;
 }
 
-.login .container {
-  width: 540px;
-  margin-top: 30px;
+.fundo .login img#background_title{
+    width: 700px;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.fundo .container {
   box-sizing: border-box;
-  background: rgba(30, 75, 123, 0.72);
-  border: 1px solid #ffffff;
+  width: 575px;
+  background: rgba(4, 35, 37, 0.9);
+  border: 1px solid #0B0274;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 47px;
+  border: 1px solid #ffffff;
+  border-radius: 68px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
+  padding-top: 15px;
+  margin-bottom: 50px;
 }
 
-.login .container .title {
-  background: #ffffff;
-  border-radius: 7px;
-  padding: 6px 12px;
-  margin-top: -30px;
+.fundo .login p {
+    width: 847px;
+    height: 169px;   
+    font-family: 'Jacques Francois', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 90px;
+    line-height: 169px;
+    color: #5CF162;
+    margin-top: -205px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.login .container .title p {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #1e4b7b;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.fundo .container .form {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.login .container .form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.login .container .form p {
-  margin-top: 30px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #ffffff;
+.fundo .container .form .box-inputs {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.login .container .form .box-inputs {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.fundo .container .form .box-inputs input {
+    width: 356px;
+    background: #FFFFFF;
+    font-family: 'Inter';
+    font-size: 20px;
+    color: #333333;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.login .container .form .box-inputs input {
-  width: 340px;
-  background: #ffffff;
-  font-family: "Inter";
-  color: #333333;
-  border: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+.fundo .container .form .btn-login {
+    background: #C4C4C4;
+    border: none;
+    color: #0E09F8;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 48px;
+    padding: 5px 28px;
+    cursor: pointer;
+    margin-bottom: 45px;
 }
 
-.login .container .form .btn-login {
-  background: #214e7e;
-  border-radius: 8px;
-  border: none;
-  color: #fff;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  padding: 10px 38px;
-  cursor: pointer;
-  margin-bottom: 45px;
-}
-
-.login .container .form .btn-login:hover {
-  background-color: #26609e;
+.fundo .container .form .btn-login:hover {
+    background-color: #97B753;
 }
 
 @media screen and (max-width: 580px) {
@@ -172,7 +175,7 @@ export default {
     width: 90%;
   }
 
-  .login .container .form .box-inputs input {
+  .fundo .container .form .box-inputs input {
     width: 85%;
   }
 }

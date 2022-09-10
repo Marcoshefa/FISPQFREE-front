@@ -13,7 +13,5 @@ export default {
 </script>
 
 <style>
-#app {
-  background: #E5E5E5 !important;
-}
+
 </style>
