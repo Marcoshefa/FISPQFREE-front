@@ -1,6 +1,6 @@
 <template>
   <section class="fundo">
-    <img id="tela"src="@/assets/images/tela.png" alt="Tela login" />
+    <img id="tela" src="@/assets/images/tela.png" alt="Tela login" />
     
     <div class="login">
       <img id="background_title" src="@/assets/images/f_title.png" alt="backgroud_title" />
@@ -45,6 +45,8 @@ export default {
   methods: {
     async logar() {
       try {
+        this.alert = '';
+
         const credentials = {
           email: this.email,
           password: this.password,
@@ -52,12 +54,12 @@ export default {
 
         const resposta = await AuthService.login(credentials);
 
-        localStorage.setItem("token", resposta.data.token);
-
-        console.log("mudar para a outra rota!");
+        localStorage.setItem("fispq-free-token", resposta.data.token);
+        
+        this.$router.push({path: '/dash'});
 
       } catch (err) {
-        const mensagemErro = err.response.data;
+        const mensagemErro = err && err.response && err.response.data ? err.response.data : "Erro ao logar!";
         this.alerta = mensagemErro;
       }
     },

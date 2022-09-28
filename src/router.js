@@ -17,7 +17,22 @@ const router = new Router({
     },
     {
       path: '/dash',
-      component:  () => import('@/pages/Dashboard')
+      component:  () => import('@/pages/Dashboard'),
+      children:[
+        {
+          path: 'fispq',
+          component: () => import('@/pages/Fispq'),
+        },
+        {
+          path: 'user',
+          component: () => import('@/pages/User'),
+        },
+        {          
+          path: 'profile',
+          component: () => import('@/pages/Profile')
+        }
+      
+      ]
     }
   ]
 })
