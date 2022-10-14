@@ -27,6 +27,10 @@ const router = new Router({
           path: 'user',
           component: () => import('@/pages/User'),
         },
+        {
+          path: 'add-user',
+          component: () => import('@/pages/AddUser'),
+        },
         {          
           path: 'profile',
           component: () => import('@/pages/Profile')

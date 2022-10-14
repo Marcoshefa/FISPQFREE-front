@@ -68,7 +68,7 @@ export default {
 
   mounted() {
     // verifica-se se não tiver o token o usuário será direcionado para a tela de login
-    if (!localStorage.getItem("fispq-free-token")) {
+    if (!localStorage.getItem("token-fispq")) {
       this.logout();
     }
   },
@@ -76,7 +76,7 @@ export default {
   methods: {
     // metodo logout() remove o token e retorna para a tela de login
     logout() {
-      localStorage.removeItem("fispq-free-token");
+      localStorage.removeItem("token-fispq");
       this.$router.push({path: '/login'});
     }
   }

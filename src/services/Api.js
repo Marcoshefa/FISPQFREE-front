@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const Api = () => {
-    const sessionToken = localStorage.getItem('token');
+    const sessionToken = localStorage.getItem('token-fispq');
 
     const baseApiUrl = process.env.VUE_APP_API
     const newInstance = axios.create({
