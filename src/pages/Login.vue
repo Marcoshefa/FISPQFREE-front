@@ -3,13 +3,13 @@
     <img id="tela" src="@/assets/images/tela.png" alt="Tela login" />
     
     <div class="login">
-      <img id="background_title" src="@/assets/images/f_title.png" alt="backgroud_title" />
+      <!-- <img id="background_title" src="@/assets/images/f_title.png" alt="backgroud_title" /> -->
       <p>FISPQ FREE</p>
     </div>
 
     <div class="container">
       <form class="form">
-      <img src="@/assets/images/logoFF.png" alt="Tela login" />
+      <!-- <img src="@/assets/images/logoFF.png" alt="Tela login" /> -->
 
         <div class="box-inputs">
           <input type="email" placeholder="Digite seu e-mail" v-model="email" />
@@ -70,8 +70,8 @@ export default {
 <style scoped>
 
 .fundo img#tela {
-  width: 1980px;
-  height: 1080px;
+  width: 1920px;
+  height: 930px;
 }
 
 .fundo {
@@ -79,23 +79,24 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: -1080px;
+  /* margin-top: -540px; */
 }
 
-.fundo .container .form img#logo{
+/* .fundo .container .form img#logo{
   width: 200px;
-}
+} */
 
-.fundo .login img#background_title{
+/* .fundo .login img#background_title{
     width: 700px;
     margin-top: 50px;
     margin-left: 60px;
-}
+    
+} */
 
 .fundo .container {
   box-sizing: border-box;
   width: 575px;
-  background: rgba(4, 35, 37, 0.9);
+  background: rgba(30, 75, 123, 0.82);
   border: 1px solid #0B0274;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px solid #ffffff;
@@ -103,21 +104,22 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: -450px;
   padding-top: 15px;
-  margin-bottom: 50px;
+  /* margin-bottom: 150px; */
 }
 
 .fundo .login p {
-    width: 847px;
-    height: 169px;   
+    /* width: 847px; */
+    /* height: 169px;    */
     font-family: 'Jacques Francois', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 90px;
+    font-size: 130px;
     line-height: 169px;
-    color: #5CF162;
-    margin-top: -205px;
+    color: #3fd444;
+    text-shadow: 10px 20px 12px #0f0b0b;
+    margin-top: -830px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,6 +130,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 30px;
 }
 
 .fundo .container .form .box-inputs {

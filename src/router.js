@@ -24,12 +24,24 @@ const router = new Router({
           component: () => import('@/pages/Fispq'),
         },
         {
+          path: 'add-fispq',
+          component: () => import('@/pages/AddFispq'),
+        },
+        {
+          path: 'edit-fispq/:id',
+          component:  () => import('@/pages/UpdateFispq')
+        },
+        {
           path: 'user',
           component: () => import('@/pages/User'),
         },
         {
           path: 'add-user',
           component: () => import('@/pages/AddUser'),
+        },
+        {
+          path: 'edit-user/:id',
+          component:  () => import('@/pages/UpdateUser')
         },
         {          
           path: 'profile',

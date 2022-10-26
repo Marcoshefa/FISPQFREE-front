@@ -4,6 +4,7 @@
 
         <v-alert v-if="finish" shaped outlined type="success" style=" margin: 20px">
             Usuário cadastrado com sucesso! Você será redirecionado ...
+            <a @click="goToList()">Ir Agora</a>
         </v-alert>
 
         <v-form ref="form" v-model="valid" lazy-validation
@@ -76,6 +77,9 @@ export default {
             } catch (err) {
                 console.log(err);
             }
+        },
+        goToList() {
+            this.$router.push({ path: '/dash/user' });
         },
         reset() {
             this.$refs.form.reset();

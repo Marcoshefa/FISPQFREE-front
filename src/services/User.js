@@ -10,5 +10,17 @@ export default {
 
     add (data) {
         return Api({}).post('/user/', data)
+    },
+
+    delete(id) {
+        return Api({}).delete('/user/' + id)
+    },
+
+    getOne(id) {
+        return Api({}).get('/user/' + id)
+    },
+
+    update(id, dados) {
+        return Api({}).put('/user/' + id, dados)
     }
 }
