@@ -15,12 +15,23 @@ export default {
     delete(id) {
         return Api({}).delete('/user/' + id)
     },
-
+    
     getOne(id) {
         return Api({}).get('/user/' + id)
     },
 
     update(id, dados) {
         return Api({}).put('/user/' + id, dados)
-    }
+    },
+    getUsers () {
+        return Api({}).get('/users')
+    },
+
+    getUser (idUser) {
+        return Api({}).get('/user/?id=' + idUser)
+    },
+
+    changePassword(idUser, data) {
+        return Api({}).post('/change_password/' + idUser, data)
+    },
 }

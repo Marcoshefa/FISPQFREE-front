@@ -13,7 +13,7 @@
             <v-text-field v-model="name" :rules="nameRules" label="Name" outlined required></v-text-field>
             <v-text-field v-model="email" :rules="emailRules" label="e-mail" outlined required></v-text-field>
             <v-text-field v-model="celular" label="Celular" outlined required></v-text-field>
-            <v-text-field v-model="data_atual" label="Atualizado" outlined required></v-text-field>
+
            
             <v-btn :disabled="!valid" color="success" class="mr-4" @click="updateUser">
                 Atualizar
@@ -28,6 +28,7 @@
 
 <script>
 import UserService from "../services/User";
+
 export default {
     data() {
         return {
@@ -55,10 +56,10 @@ export default {
         async getUser() {
             try {
                 const response = await UserService.getOne(this.idUser);
-                this.name = response.data.name;
-                this.email = response.data.email;
-                this.celular = response.data.celular;
-                this.data_atual = response.data.atual;
+                this.name = response.data.usuario.name;
+                this.email = response.data.usuario.email;
+                this.celular = response.data.usuario.celular;
+
 
             } catch (err) {
                 this.users = [];
@@ -67,25 +68,26 @@ export default {
         async updateUser() {
             try {
                 const data = {
-                name: this.name,
-                email: this.email,
-                celular: this.celular,
-                data_atual: '',
-                nameRules: [
-                    v => !!v || 'Nome é obrigatório'
-                ],
-                emailRules: [
-                    v => !!v || 'email é obrigatório'
-                ],
+                    name: this.name,
+                    email: this.email,
+                    celular: this.celular,
+                    nameRules: [
+                        v => !!v || 'Nome é obrigatório'
+                    ],
+                    emailRules: [
+                        v => !!v || 'email é obrigatório'
+                    ],
 
                 }
 
                 await UserService.update(this.idUser, data);
+
                 this.finish = true;
                 this.reset();
+
                 setTimeout(() => {
                     this.goToList();
-                }, 5000);
+                }, 3000);
 
             } catch (err) {
                 console.log(err);
@@ -100,3 +102,4 @@ export default {
     }
 }
 </script>
+

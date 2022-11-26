@@ -53,8 +53,9 @@ export default {
         };
 
         const resposta = await AuthService.login(credentials);
-
+        // const resposta = await UserService.login(credentials);
         localStorage.setItem("token-fispq", resposta.data.token);
+        localStorage.setItem("fispq-free_id", resposta.data.user_id);
         
         this.$router.push({path: '/dash'});
 

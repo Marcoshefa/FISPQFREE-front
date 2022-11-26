@@ -7,4 +7,5 @@ export default {
     login (data) {
         return Api({}).post('/login', data)
     },
+
 }

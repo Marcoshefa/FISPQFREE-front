@@ -22,5 +22,8 @@ export default {
 
     update(id, dados) {
         return Api({}).put('/fispq/' + id, dados)
-    }
+    },
+    getFispq () {
+        return Api({}).get('/fispq')
+    },
 }
