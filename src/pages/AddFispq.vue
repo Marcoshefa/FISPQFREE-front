@@ -218,15 +218,16 @@
 
                   <v-stepper-step editable step="7" complete> 11 - INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="7">
-                    <v-text-field v-model="toxicidadea" name="input-5-1" :rules="rules250" label="Toxicidade" outlined required></v-text-field>
-                    <v-text-field v-model="cpele" name="input-5-1" :rules="rules250" label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
-                    <v-text-field v-model="srespiratoria" name="input-5-1" :rules="rules45" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
+                    <v-textarea counter label="Toxicidade" :rules500="rules" :value="toxicidadea"></v-textarea>
+                    <!-- <v-text-field v-model="toxicidadea" name="input-5-1" :rules="rules250" label="Toxicidade" outlined required></v-text-field> -->
+                    <v-text-field v-model="cpele" name="input-5-1"  label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
+                    <v-text-field v-model="srespiratoria" name="input-5-1" :rules="rules250" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
                     <v-text-field v-model="mutagenicidade" name="input-5-1" :rules="rules45" label="Sensibilização respiratória ou à pela" outlined required></v-text-field>
                     <v-text-field v-model="carcinogenicidade" name="input-5-1" :rules="rules45" label="Mutagenicidade em célulass germinativas" outlined required></v-text-field>
                     <v-text-field v-model="reproducao" name="input-5-1" :rules="rules45" label="Carcinogenicidade" outlined required></v-text-field>
                     <v-text-field v-model="exposicaou" name="input-5-1" :rules="rules45" label="Toxicidade à reprodução" outlined required></v-text-field>
                     <v-text-field v-model="exposicaor" name="input-5-1" :rules="rules45" label="Toxicidade para órgãos - alvo específicos - exposição única" outlined required></v-text-field>
-                    <v-text-field v-model="aspiracao" name="input-5-1" :rules="rules45" label="Perigo por aspiração" outlined required></v-text-field>
+                    <v-text-field v-model="aspiracao" name="input-5-1" :rules="rules250" label="Perigo por aspiração" outlined required></v-text-field>
 
                     <div>
                       <p style="color:blue; font-size: 20px">LINKS DE APOIO</p>
@@ -281,10 +282,10 @@
                       <v-container fluid>
                         <v-textarea counter label="TERRESTRE" :rules500="rules" :value="terrestre"></v-textarea>
                         <v-text-field v-model="onu" name="input-5-1" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarque" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
+                        <v-text-field v-model="nome_embarque" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classe" name="input-5-1" label="Classe/Subclasse" outlined required></v-text-field>
-                        <v-text-field v-model="risco" name="input-5-1" label="Número de risco" outlined required></v-text-field>
-                        <v-text-field v-model="embalagem" name="input-5-1" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="n_risco" name="input-5-1" label="Número de risco" outlined required></v-text-field>
+                        <v-text-field v-model="grupo_emb" name="input-5-1" label="Grupo de embalagem" outlined required></v-text-field>
                         <v-textarea counter label="HIDROVIÁRIO" :rules500="rules" :value="hidroviario"></v-textarea>
                         <v-text-field v-model="onuh" name="input-5-1" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarqueh" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
@@ -307,7 +308,7 @@
                   <v-stepper-step editable step="11" complete> 15 - INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
                     <v-stepper-content step="11">
                       <v-container fluid>
-                        <v-textarea counter label="Regulamentações" :rules500="rules" :value="iregulamentacao"></v-textarea>
+                        <v-textarea counter label="Regulamentações" :rules500="rules" :value="regulamentacoes"></v-textarea>
                       </v-container>
                       
                       
@@ -354,62 +355,65 @@ export default {
       aspecto:'',
       odor:'',
       ph:'Não disponível',
-      // fusao:'Não disponível',
-      // ebulicao:'Não disponível',
-      // fulgor:'Não disponível',
-      // evaporacao:'Não disponível',
-      // inflamabilidade:'Não disponível',
-      // explosividade:'Não disponível',
-      // pvapor:'Não disponível',
-      // dvapor:'Não disponível',
-      // drelativa:'Não disponível',
-      // solubilidade:'Não disponível',
-      // particao:'Não disponível',
-      // autoignicao:'Não disponível',
-      // decomposicao:'Não disponível',
-      // viscosidade:'Não disponível',
-      // informacoes:'Não disponível',
-      // reatividade:'Não disponível',
-      // estabilidadeq:'Produto estável sob as condições recomendadas de armazenamento. ',
-      // rperigosas:'',
-      // caseremevitadas:'',
-      // incompativeis:'',
-      // pdecomposicao:'',
-      // toxicidadea:'Não disponível',
-      // cpele:'Não disponível',
-      // srespiratoria:'Não disponível',
-      // mutagenicidade:'Não disponível',
-      // carcinogenicidade:'Não disponível',
-      // reproducao:'Não disponível',
-      // exposicaou:'Não disponível',
-      // exposicaor:'Não disponível',
-      // aspiracao:'Não disponível',
-      // ecotoxidade:'Não disponível',
-      // degradabilidade:'Não disponível',
-      // bioacumulativo:'Não disponível',
-      // mobilidade:'Não disponível',
-      // outros_efeitos:'Não disponível',
-      // destinacaofinal:'No tratamento e disposição do produto, de seus restos e de embalagens usadas, devem-se seguiras orientações da legislação nas esferas municipal, estadual e federal. Recomenda-se queimar em um incinerador químico equipado com pós-combustor e purificador de gases, mas tomar precauções adicionais ao colocar esse material em ignição, visto que é altamente inflamável. Observar todos os regulamentos ambientais federais, estaduais e locais.',
-      // terrestre: 'TERRESTRE: \nResolução n° 5.947 de 01 de junho de 2021 da Agência Nacional de Transportes Terrestres (ANTT), Atualiza o Regulamento para o Transporte Rodoviário de Produtos Perigosos e aprova as suas Instruções Complementares, e dá outras providências',
-      // onu:'',
-      // embarque:'',
-      // classe:'',
-      // risco:'',
-      // embalagem:'',
-      // hidroviario:'DPC - Diretoria de Portos e Costas (transporte de águas brasileiras)\nNormas de autoridade Marítima (NORMAM)\nNORMAM 01/DPC: Embarcações empregada na Navegação em Mar Aberto\nNORMAM 02/DPC: Embarcações Empregadas na Navegação Interior\nIMO - "International Maritime Organization" (Organização Marítima Internacional)\nInternational Maritime Dangerous Googs Code(IMDG Code)',
-      // onuh:'',
-      // embarqueh:'',
-      // classeh:'',
-      // riscoh:'',
-      // embalagemh:'',
-      // aereo: 'AÉREO\nANAC - Agência Nacional de Aviação Civil - Resolução n°129 de 8 de dezembro de 2009.\nRBAC N°175 - REGULAMENTO BRASILEIRO DA AVIAÇÃO CIVIL - TRANSPORTE DE ARTIGOS PERIGOSOS EM AERONAVES CIVIS./n IS N° 175-001-INSTRUÇÃO SUPLEMENTAR IS\n ICAO - "International Civil Aviation Organization"(Organização da Aviação Civil Internacional)-DOC 9284-na/905\nIATA - "International Air Transport Association" (Associação Internacional de Transporte Aéreo)\nDangerous Goods Regulation (DGR)',
-      // onua:'',
-      // embarquea:'',
-      // classea:'',
-      // riscoa:'',
-      // embalagema:'',
-      // iregulamentacao:'Decreto Federal nº 2.657, de 3 de julho de 1998. \nNorma ABNT-NBR 14725:2012.\nPortaria n° 229 de 24 de maio de 2011.',
-      // oinformacoes:'Centros de Informações Toxicológicas\nBelo Horizonte - Serviço de Toxicologia de Minas Gerais - Hospital João XXIII\nFone: (31) 3239.9224/3239.9223 (Hospital) (31)3239-9308 / 3224-4000 (Tel. CIT) Fax: (31) 3239.9260(CIT).\n\nPorto Alegre Centro de Informações Toxicológicas do Rio Grande do Sul.\nFone: (51) 3217.1751 (Tel. CIT) Fax: (51) 3217.9067 Atendimento: 0800 78 02 00.\nRecife - Centro de Assistência Toxicológica de Pernambuco - Hospital da Restauração - 1º andar.\nFone: (81) 3421.5444 R. 151 (Tel. Hospital) Fax: (81) 3421.5927 / 3423-8263.\nRio de Janeiro- Centro de Controle de Intoxicações do Rio de Janeiro - Hospital Universitário Clementino Fraga Filho.\nFone: (21) 2573.3244/2290-3344 (Tel. CIT) - Fax: (21) 2573-7079 (CIT).\nSalvador- Centro de Informações Anti-Veneno da Bahia - CIAVE - Hospital Geral Roberto Santos.\nFone: (71) 387.3414/387-4343 e 0800 284 43 43 Fax: (71) 387.3414.\nSão Paul- Centro de Controle de Intoxicações de São Paulo - Hospital Municipal Dr. Artur Ribeiro de Saboya.\nFone/Fax: (11) 5012/2399 (Tel. CIT) (11) 5012-5311 (atendimento médico) Atendimento: 0800 771 37 33.\nLegendas e abreviaturas\nCAS - Chemical Abstracts Service\nONU – Organização das Nações Unidas\nACGIH - American Conference of Governmental Industrial Hygienists\nTLV - Threshold Limit Values (limites de exposição)\nTWA – Time-Weighted Average (média ponderada pelo tempo)\nSTEL – Short-Term Exposure Limit (exposição de curta duração)\nDL50 – Dose letal 50%\nCL50 – Concentração letal 50%\nCE50 – Concentração Efetiva\nO não cumprimento das informações acima descritas, isenta o fabricante de responsabilidade pelo uso indevido do produto. As indicações baseiam-se no nível atual de nossos conhecimentos e servem para a caracterização do produto no que se refere às medidas de segurança a tomar. Estas indicações não implicam em qualquer garantia das propriedades do produto acima descrito.\nPermitido fazer número ilimitado de cópias físicas, somente para uso interno.',
+      fusao:'Não disponível',
+      ebulicao:'Não disponível',
+      fulgor:'Não disponível',
+      evaporacao:'Não disponível',
+      inflamabilidade:'Não disponível',
+      explosividade:'Não disponível',
+      pvapor:'Não disponível',
+      dvapor:'Não disponível',
+      drelativa:'Não disponível',
+      solubilidade:'Não disponível',
+      particao:'Não disponível',
+      autoignicao:'Não disponível',
+      decomposicao:'Não disponível',
+      viscosidade:'Não disponível',
+      informacoes:'Não disponível',
+      reatividade:'Não disponível',
+      estabilidadeq:'Produto estável sob as condições recomendadas de armazenamento. ',
+      rperigosas:'',
+      caseremevitadas:'',
+      incompativeis:'',
+      pdecomposicao:'',
+      toxicidadea:'Não disponível',
+      cpele:'Não disponível',
+      srespiratoria:'Não disponível',
+      mutagenicidade:'Não disponível',
+      carcinogenicidade:'Não disponível',
+      reproducao:'Não disponível',
+      exposicaou:'Não disponível',
+      exposicaor:'Não disponível',
+      aspiracao:'Não disponível',
+      ecotoxidade:'Não disponível',
+      degradabilidade:'Não disponível',
+      bioacumulativo:'Não disponível',
+      mobilidade:'Não disponível',
+      outros_efeitos:'Não disponível',
+      destinacaofinal:'No tratamento e disposição do produto, de seus restos e de embalagens usadas, devem-se seguiras orientações da legislação nas esferas municipal, estadual e federal. Recomenda-se queimar em um incinerador químico equipado com pós-combustor e purificador de gases, mas tomar precauções adicionais ao colocar esse material em ignição, visto que é altamente inflamável. Observar todos os regulamentos ambientais federais, estaduais e locais.',
+      terrestre: 'TERRESTRE: \nResolução n° 5.947 de 01 de junho de 2021 da Agência Nacional de Transportes Terrestres (ANTT), Atualiza o Regulamento para o Transporte Rodoviário de Produtos Perigosos e aprova as suas Instruções Complementares, e dá outras providências',
+      onu:'',
+      nome_embarque:'',
+      classe:'',
+      n_risco:'',
+      grupo_emb:'',
+      hidroviario:'DPC - Diretoria de Portos e Costas (transporte de águas brasileiras)\nNormas de autoridade Marítima (NORMAM)\nNORMAM 01/DPC: Embarcações empregada na Navegação em Mar Aberto\nNORMAM 02/DPC: Embarcações Empregadas na Navegação Interior\nIMO - "International Maritime Organization" (Organização Marítima Internacional)\nInternational Maritime Dangerous Googs Code(IMDG Code)',
+      onuh:'',
+      embarqueh:'',
+      classeh:'',
+      riscoh:'',
+      embalagemh:'',
+      aereo: 'AÉREO\nANAC - Agência Nacional de Aviação Civil - Resolução n°129 de 8 de dezembro de 2009.\nRBAC N°175 - REGULAMENTO BRASILEIRO DA AVIAÇÃO CIVIL - TRANSPORTE DE ARTIGOS PERIGOSOS EM AERONAVES CIVIS./n IS N° 175-001-INSTRUÇÃO SUPLEMENTAR IS\n ICAO - "International Civil Aviation Organization"(Organização da Aviação Civil Internacional)-DOC 9284-na/905\nIATA - "International Air Transport Association" (Associação Internacional de Transporte Aéreo)\nDangerous Goods Regulation (DGR)',
+      onua:'',
+      embarquea:'',
+      classea:'',
+      riscoa:'',
+      embalagema:'',
+      regulamentacoes:'Decreto Federal nº 2.657, de 3 de julho de 1998. \nNorma ABNT-NBR 14725:2012.\nPortaria n° 229 de 24 de maio de 2011.',
+      oinformacoes:'Centros de Informações Toxicológicas\nBelo Horizonte - Serviço de Toxicologia de Minas Gerais - Hospital João XXIII\nFone: (31) 3239.9224/3239.9223 (Hospital) (31)3239-9308 / 3224-4000 (Tel. CIT) Fax: (31) 3239.9260(CIT).\n\nPorto Alegre Centro de Informações Toxicológicas do Rio Grande do Sul.\nFone: (51) 3217.1751 (Tel. CIT) Fax: (51) 3217.9067 Atendimento: 0800 78 02 00.\nRecife - Centro de Assistência Toxicológica de Pernambuco - Hospital da Restauração - 1º andar.\nFone: (81) 3421.5444 R. 151 (Tel. Hospital) Fax: (81) 3421.5927 / 3423-8263.\nRio de Janeiro- Centro de Controle de Intoxicações do Rio de Janeiro - Hospital Universitário Clementino Fraga Filho.\nFone: (21) 2573.3244/2290-3344 (Tel. CIT) - Fax: (21) 2573-7079 (CIT).\nSalvador- Centro de Informações Anti-Veneno da Bahia - CIAVE - Hospital Geral Roberto Santos.\nFone: (71) 387.3414/387-4343 e 0800 284 43 43 Fax: (71) 387.3414.\nSão Paul- Centro de Controle de Intoxicações de São Paulo - Hospital Municipal Dr. Artur Ribeiro de Saboya.\nFone/Fax: (11) 5012/2399 (Tel. CIT) (11) 5012-5311 (atendimento médico) Atendimento: 0800 771 37 33.\nLegendas e abreviaturas\nCAS - Chemical Abstracts Service\nONU – Organização das Nações Unidas\nACGIH - American Conference of Governmental Industrial Hygienists\nTLV - Threshold Limit Values (limites de exposição)\nTWA – Time-Weighted Average (média ponderada pelo tempo)\nSTEL – Short-Term Exposure Limit (exposição de curta duração)\nDL50 – Dose letal 50%\nCL50 – Concentração letal 50%\nCE50 – Concentração Efetiva\nO não cumprimento das informações acima descritas, isenta o fabricante de responsabilidade pelo uso indevido do produto. As indicações baseiam-se no nível atual de nossos conhecimentos e servem para a caracterização do produto no que se refere às medidas de segurança a tomar. Estas indicações não implicam em qualquer garantia das propriedades do produto acima descrito.\nPermitido fazer número ilimitado de cópias físicas, somente para uso interno.',
+      outras_info:'',
+      outras_info2: '',
+      legenda: '',
 
       e13: 1,
       dialog: false,
@@ -451,7 +455,7 @@ export default {
       rules45: [v => v.length <= 45 || 'Max 45 caracteres', v => !!v || 'Este campo é obrigatório'],
       rules90: [v => v.length <= 90 || 'Max 90 caracteres', v => !!v || 'Este campo é obrigatório'],
       rules250: [v => v.length <= 250 || 'Max 250 caracteres', v => !!v || 'Este campo é obrigatório'],
-      rules350: [v => v.length <= 350 || 'Max 250 caracteres', v => !!v || 'Este campo é obrigatório'],
+      rules350: [v => v.length <= 350 || 'Max 350 caracteres', v => !!v || 'Este campo é obrigatório'],
       rules500:[v => v.length <= 500 || 'Max 500 caracteres', v => !!v || 'Este campo é obrigatório'],
     }),
 
@@ -482,10 +486,96 @@ export default {
       async addFispq() {
           try {
               const data = {
-                  cod_int: this.produto,
+                  // cod_int: this.cod_int,
+                  // produto: this.produto,
+                  // uso: this.uso,
+                  // onu: this.onu,
+                  // embarque: this.embarque,
+                  // limitexposicao:this.limitexposicao,
+                  // medcontroleng:this.medcontroleng,
+                  // polhos:this.polhos,
+                  // ppele:this.ppele,
+                  // prespiratoria:this.prespiratoria,
+
                   produto: this.produto,
+                  cod_int: this.cod_int,
                   uso: this.uso,
+                  inalacao: this.inalacao,
+                  cont_olhos: this.cont_olhos,
+                  cont_pele: this.cont_pele,
+                  ingestao: this.ingestao,
+                  sintomas: this.sintomas,
+                  medico: this.medico,
+                  extincao: this.extincao,
+                  perigo_esp: this.perigo_esp,
+                  medidas_protecao: this.medidas_protecao,
+                  servico_emergencia: this.servico_emergencia,
+                  servico_emergencia2: this.servico_emergencia2,
+                  precaucao_ambiente: this.precaucao_ambiente,
+                  metodos_materiais: this.metodos_materiais,
+                  manuseio_seguro: this.manuseio_seguro,
+                  medidas_higiene: this.medidas_higiene,
+                  condicoes_armazenamento: this.condicoes_armazenamento,
+                  // frase_perigo_selecionada: this.frase_perigo_selecionada,
+                  // frase_perigo_availables: this.frase_perigo_availables,
+                  limitexposicao: this.limitexposicao,
+                  medcontroleng: this.medcontroleng,
+                  polhos: this.polhos,
+                  ppele: this.ppele,
+                  prespiratoria: this.prespiratoria,
+                  ptermicos: this.ptermicos,
+                  aspecto: this.aspecto,
+                  odor: this.odor,
+                  ph: this.ph,
+                  fusao: this.fusao,
+                  ebulicao: this.ebulicao,
+                  fulgor: this.fulgor,
+                  evaporacao: this.evaporacao,
+                  inflamabilidade: this.inflamabilidade,
+                  explosividade: this.explosividade,
+                  pvapor: this.pvapor,
+                  dvapor: this.dvapor,
+                  drelativa: this.drelativa,
+                  solubilidade: this.solubilidade,
+                  particao: this.particao,
+                  autoignicao: this.autoignicao,
+                  decomposicao: this.decomposicao,
+                  viscosidade: this.viscosidade,
+                  informacoes: this.informacoes,
+                  reatividade: this.reatividade,
+                  estabilidadeq: this.estabilidadeq,
+                  rperigosas: this.rperigosas,
+                  caseremevitadas: this.caseremevitadas,
+                  incompativeis: this.incompativeis,
+                  pdecomposicao: this.pdecomposicao,
+                  toxicidadea: this.toxicidadea,
+                  cpele: this.cpele,
+                  srespiratoria: this.srespiratoria,
+                  mutagenicidade: this.mutagenicidade,
+                  carcinogenicidade: this.carcinogenicidade,
+                  reproducao: this.reproducao,
+                  exposicaou: this.exposicaou,
+                  exposicaor: this.exposicaor,
+                  aspiracao: this.aspiracao,
+                  ecotoxidade: this.ecotoxidade,
+                  degradabilidade: this.degradabilidade,
+                  bioacumulativo: this.bioacumulativo,
+                  mobilidade: this.mobilidade,
+                  outros_efeitos: this.outros_efeitos,
+                  destinacaofinal: this.destinacaofinal,
+                  terrestre: this.terrestre,
                   onu: this.onu,
+                  nome_embarque: this.nome_embarque,
+                  classe: this.classe,
+                  n_risco: this.n_risco,
+                  grupo_emb: this.grupo_emb,
+                  hidroviario: this.hidroviario,
+                  aereo: this.aereo,
+                  regulamentacoes: this.regulamentacoes,
+                  outras_info: this.outras_info,
+                  outras_info2: this.outras_info2,
+                  legenda: this.legenda,
+
               }
               await FispqService.add(data);
                 
@@ -494,7 +584,7 @@ export default {
 
               setTimeout(() => {
                   this.$router.push({path: '/dash/fispq'});
-              }, 10000);
+              }, 1000);
                 
           } catch (err) {
               console.log(err);

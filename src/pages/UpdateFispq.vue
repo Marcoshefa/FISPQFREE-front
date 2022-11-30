@@ -286,10 +286,10 @@
                       <v-container fluid>
                         <v-textarea counter label="TERRESTRE" :rules500="rules" :value="terrestre"></v-textarea>
                         <v-text-field v-model="onu" name="input-5-1" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarque" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
+                        <v-text-field v-model="nome_embarque" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classe" name="input-5-1" label="Classe/Subclasse" outlined required></v-text-field>
-                        <v-text-field v-model="risco" name="input-5-1" label="Número de risco" outlined required></v-text-field>
-                        <v-text-field v-model="embalagem" name="input-5-1" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="n_risco" name="input-5-1" label="Número de risco" outlined required></v-text-field>
+                        <v-text-field v-model="grupo_emb" name="input-5-1" label="Grupo de embalagem" outlined required></v-text-field>
                         <v-textarea counter label="HIDROVIÁRIO" :rules500="rules" :value="hidroviario"></v-textarea>
                         <v-text-field v-model="onuh" name="input-5-1" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarqueh" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
@@ -405,8 +405,18 @@ export default {
             mobilidade:'',
             outros_efeitos:'',
             destinacaofinal:'',
-
-            iregulamentacao:'',
+            terrestre: '',
+            onu: '',
+            nome_embarque: '',
+            classe: '',
+            n_risco: '',
+            grupo_emb: '',
+            hidroviario: '',
+            aereo: '',
+            regulamentacoes: '',
+            outras_info: '',
+            outras_info2: '',
+            legenda: '',
 
             idfispqRules: [
                 v => !!v || 'ID é obrigatório'
@@ -428,9 +438,26 @@ export default {
                 const response = await FispqService.getOne(this.idFispq);
                 this.idfispq = response.data.fispq.idFispq;
                 this.produto = response.data.fispq.produto;
+                this.cod_int = response.data.fispq.cod_int;
                 this.uso = response.data.fispq.uso;
-                this.frase_perigo_selecionada = response.data.fispq.frase_perigo_selecionada;
-                this.frase_perigo_availables = response.data.fispq.frase_perigo_availables;
+                this.inalacao = response.data.fispq.inalacao;
+                this.cont_olhos = response.data.fispq.cont_olhos;
+                this.cont_pele = response.data.fispq.cont_pele;
+                this.ingestao = response.data.fispq.ingestao;
+                this.sintomas = response.data.fispq.sintomas;
+                this.medico = response.data.fispq.medico;
+                this.extincao = response.data.fispq.extincao;
+                this.perigo_esp = response.data.fispq.perigo_esp;
+                this.medidas_protecao = response.data.fispq.medidas_protecao;
+                this.servico_emergencia = response.data.fispq.servico_emergencia;
+                this.servico_emergencia2 = response.data.fispq.servico_emergencia2;
+                this.precaucao_ambiente = response.data.fispq.precaucao_ambiente;
+                this.metodos_materiais = response.data.fispq.metodos_materiais;
+                this.manuseio_seguro = response.data.fispq.manuseio_seguro;
+                this.medidas_higiene = response.data.fispq.medidas_higiene;
+                this.condicoes_armazenamento = response.data.fispq.condicoes_armazenamento;
+                // this.frase_perigo_selecionada = response.data.fispq.frase_perigo_selecionada;
+                // this.frase_perigo_availables = response.data.fispq.frase_perigo_availables;
                 this.limitexposicao = response.data.fispq.limitexposicao;
                 this.medcontroleng = response.data.fispq.medcontroleng;
                 this.polhos = response.data.fispq.polhos;
@@ -456,7 +483,7 @@ export default {
                 this.viscosidade = response.data.fispq.viscosidade;
                 this.informacoes = response.data.fispq.informacoes;
                 this.reatividade = response.data.fispq.reatividade;
-                this.uestabilidadeq = response.data.fispq.estabilidadeq;
+                this.estabilidadeq = response.data.fispq.estabilidadeq;
                 this.rperigosas = response.data.fispq.rperigosas;
                 this.caseremevitadas = response.data.fispq.caseremevitadas;
                 this.incompativeis = response.data.fispq.incompativeis;
@@ -476,7 +503,18 @@ export default {
                 this.mobilidade = response.data.fispq.mobilidade;
                 this.outros_efeitos = response.data.fispq.outros_efeitos;
                 this.destinacaofinal = response.data.fispq.destinacaofinal;
-                this.iregulamentacao = response.data.fispq.iregulamentacao;
+                this.terrestre = response.data.fispq.terrestre;
+                this.onu = response.data.fispq.onu;
+                this.nome_embarque = response.data.fispq.nome_embarque;
+                this.classe = response.data.fispq.classe;
+                this.n_risco = response.data.fispq.n_risco;
+                this.grupo_emb = response.data.fispq.grupo_emb;
+                this.hidroviario = response.data.fispq.hidroviario;
+                this.aereo = response.data.fispq.aereo;
+                this.regulamentacoes = response.data.fispq.regulamentacoes;
+                this.outras_info = response.data.fispq.outras_info;
+                this.outras_info2 = response.data.fispq.outras_info2;
+                this.legenda = response.data.fispq.legenda;
 
 
             } catch (err) {
@@ -488,6 +526,11 @@ export default {
                 const data = {
                 idfispq: this.idfispq,
                 produto: this.produto,
+                limitexposicao: this.limitexposicao,
+                medcontroleng: this.medcontroleng,
+                polhos: this.polhos,
+                ppele: this.ppele,
+                prespiratoria: this.prespiratoria,
 
                 idfispqRules: [
                     v => !!v || 'Id é obrigatório'

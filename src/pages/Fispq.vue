@@ -82,10 +82,10 @@ export default {
     },
     mounted() {
         
-        this.getFispqs();
+        this.getFispq();
     },
     methods: {
-        async getFispqs() {
+        async getFispq() {
             try {
                 const response = await FispqService.getAll();
                 this.fispqs = response.data.fispqs_list.map(fispq => {
@@ -106,7 +106,7 @@ export default {
             try {
                 await FispqService.delete(id_Fispq);
                 this.dialogCancelar = false;
-                this.getFispqs();
+                this.getFispq();
 
             } catch (err) {
                 console.log(err)
