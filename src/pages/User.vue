@@ -3,7 +3,7 @@
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>Usuário</h1>
 
-            <v-btn color="blue-grey" class="ma-2 white--text" @click="goToAdd()">
+            <v-btn color="green" class="ma-2 white--text" @click="goToAdd()">
                 <v-icon left dark>
                     add
                 </v-icon>
@@ -72,14 +72,14 @@ export default {
         return {
             // headers foi definido no inicio da página como cabeçalho da tabela
             headers: [
-                { text: 'ID', align: 'start', value: 'id', },
-                { text: 'Nome', align: 'start', value: 'name' },
-                { text: 'e-mail', align: 'start', value: 'email' },
-                { text: 'Celular', align: 'start', value: 'celular' },
-                { text: 'Data de criação', align: 'start', value: 'created_at' },
-                { text: 'Data da atualização', align: 'start', value: 'update_at' },
-                { text: 'Nível de permissão', align: 'start', value: 'permission_id' },
-                { text: 'Ações', align: 'start', value: 'actions' }
+                { text: 'ID', align: 'start', value: 'id', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Nome', align: 'start', value: 'name', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'e-mail', align: 'start', value: 'email', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Celular', align: 'start', value: 'celular', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Data de criação', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Data da atualização', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Nível de permissão', align: 'start', value: 'permission_id', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'Ações', align: 'start', value: 'actions', class:'blue lighten-3 subtitle-1 font-weight-black' }
             ],
             // Cria uma variavel para guarda a lista de objetos, neste caso os usuários
             users: [],

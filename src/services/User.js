@@ -32,6 +32,6 @@ export default {
     },
 
     changePassword(idUser, data) {
-        return Api({}).post('/change_password/' + idUser, data)
+        return Api({}).post('/user/change_password/' + idUser, data)
     },
 }

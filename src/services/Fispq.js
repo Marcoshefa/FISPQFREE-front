@@ -12,6 +12,10 @@ export default {
         return Api({}).post('/fispq/', data)
     },
 
+    addComp (data) {
+        return Api({}).post('/fispq/comp/', data)
+    },
+
     delete(id) {
         return Api({}).delete('/fispq/' + id)
     },
@@ -23,7 +27,16 @@ export default {
     update(id, dados) {
         return Api({}).put('/fispq/' + id, dados)
     },
+
     getFispq () {
         return Api({}).get('/fispq')
+    },
+
+    getFispqFrase () {
+        return Api({}).get('/fispq/frase_perigo/')
+    },
+
+    getAllFrase () {
+        return Api({}).get('/fispq/frase_perigo')
     },
 }

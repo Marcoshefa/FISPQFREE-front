@@ -3,18 +3,18 @@
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>FISPQ</h1>
 
-            <v-btn color="blue-grey" class="ma-2 white--text" @click="goToAdd()">
+            <v-btn color="green" class="ma-2 white--text" @click="goToAdd()">
                 <v-icon left dark>
                     add
-                </v-icon>
+                </v-icon> 
                 Nova Fispq
             </v-btn>
         </div>
 
-        <div style="margin-top: 25px">
-            <v-data-table :headers="headers" :items="fispqs" :items-per-page="10" class="elevation-1"
+        <div style="margin-top: 25px ">
+            <v-data-table :headers="headers" :items="fispqs" :items-per-page="10" class=" elevation-1 "
                 no-data-text="Não encontramos FISPQ cadastradas.">
-                
+               
                 <template v-slot:[`item.actions`]="{ item }">
                     <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/edit-fispq/' + item.idFispq">
                         <v-icon dark>
@@ -31,6 +31,7 @@
                         </v-icon>
                     </v-btn>
                 </template>
+               
             </v-data-table>
 
             <v-dialog v-model="dialogCancelar" persistent max-width="350">
@@ -66,13 +67,13 @@ export default {
     data() {
         return {
             headers: [
-                { text: 'ID', align: 'start', value: 'idFispq', },
-                { text: 'Produto', align: 'start', value: 'produto' },
-                { text: 'ONU', align: 'start', value: 'onu' },
-                { text: 'Nome apropriado para embarque', align: 'start', value: 'nome_embarque' },
-                { text: 'Data de criação', align: 'start', value: 'created_at' },
-                { text: 'Data da atualização', align: 'start', value: 'update_at' },
-                { text: 'Ações', align: 'start', value: 'actions' }
+                { text: 'ID', align: 'start', value: 'idFispq', class:'blue lighten-3 subtitle-1 font-weight-black'},
+                { text: 'PRODUTO', align: 'start', value: 'produto', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'ONU', align: 'start', value: 'onu', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'blue lighten-3 subtitle-1 font-weight-black', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'DATA DE CRIAÇÃO', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'DATA DE ATUALIZAÇÃO', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'AÇÕES', align: 'start', value: 'actions', class:'blue lighten-3 subtitle-1 font-weight-black' }
             ],
             sortable: false,
             fispqs: [],
@@ -119,3 +120,4 @@ export default {
     }
 }
 </script>
+

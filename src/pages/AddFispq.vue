@@ -43,14 +43,14 @@
 
               <v-stepper-step editable step="3" complete> 3 - COMPOSIÇÃO E INFORMAÇÕES SOBRE OS INGREDIENTES </v-stepper-step>
                   <v-stepper-content step="3">
-                    <v-data-table :headers="headers" :items="substancias" sort-by="cmm" class="elevation-1">
+                    <v-data-table :headers="headers" :items="substancias" :sort-by="cmm" :sort-desc="true" class="elevation-1">
                       <template v-slot:top>
                         <v-toolbar flat>
                           <v-divider class="mx-4" inset vertical></v-divider>
                           <v-spacer></v-spacer>
                           <v-dialog v-model="dialog" max-width="800px">
                             <template v-slot:activator="{ on, attrs }">
-                              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on"
+                              <v-btn color="green" dark class="mb-2" v-bind="attrs" v-on="on"
                               >Nova Substância
                               </v-btn>
                             </template>
@@ -427,12 +427,13 @@ export default {
           align: 'start',
           sortable: false,
           value: 'substancia',
+          class:'blue lighten-3 subtitle-1 font-weight-black'
         },
-        { text: 'CAS', value: 'cas' },
-        { text: 'Formula Molecular', value: 'fm' },
-        { text: 'Peso Molecular', value: 'pm' },
-        { text: 'Concentração (M/M)', value: 'cmm' },
-        { text: 'Actions', value: 'actions', sortable: false },
+        { text: 'CAS', value: 'cas', class:'blue lighten-3 subtitle-1 font-weight-black' },
+        { text: 'Formula Molecular', value: 'fm',class:'blue lighten-3 subtitle-1 font-weight-black' },
+        { text: 'Peso Molecular', value: 'pm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+        { text: 'Concentração (M/M)', value: 'cmm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+        { text: 'Actions', value: 'actions', sortable: false, class:'blue lighten-3 subtitle-1 font-weight-black' },
       ],
       substancias: [],
       editedIndex: -1,
@@ -486,16 +487,6 @@ export default {
       async addFispq() {
           try {
               const data = {
-                  // cod_int: this.cod_int,
-                  // produto: this.produto,
-                  // uso: this.uso,
-                  // onu: this.onu,
-                  // embarque: this.embarque,
-                  // limitexposicao:this.limitexposicao,
-                  // medcontroleng:this.medcontroleng,
-                  // polhos:this.polhos,
-                  // ppele:this.ppele,
-                  // prespiratoria:this.prespiratoria,
 
                   produto: this.produto,
                   cod_int: this.cod_int,
@@ -575,6 +566,7 @@ export default {
                   outras_info: this.outras_info,
                   outras_info2: this.outras_info2,
                   legenda: this.legenda,
+                  substancias: this.substancias
 
               }
               await FispqService.add(data);
@@ -590,27 +582,6 @@ export default {
               console.log(err);
           }
       },
-      
-      // async updateCategory() {
-      //       try {
-      //           const data = {
-      //               name: this.name,
-      //               description: this.description,
-      //               author_id: this.author_selected.id
-      //           }
-      //           await FispqService.update(this.idCategory, data);
-
-      //           this.finish = true;
-      //           this.reset();
-
-      //           setTimeout(() => {
-      //               this.goToList();
-      //           }, 10000);
-
-      //       } catch (err) {
-      //           console.log(err);
-      //       }
-      //   },
       
         goToList() {
             this.$router.push({ path: '/dash/fispq' });

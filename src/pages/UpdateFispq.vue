@@ -13,7 +13,7 @@
 
             <v-text-field v-model="idfispq" :rules="idfispqRules" label="ID Fispq" outlined required></v-text-field>
             <v-text-field v-model="produto" :rules="produtoRules" label="Produto" outlined required></v-text-field> -->
-            <v-form ref="form" v-model="valid" lazy-validation style="background: #FFF; border-radius: 5px; padding: 20px; margin: 20px">
+          <v-form ref="form" v-model="valid" lazy-validation style="background: #FFF; border-radius: 5px; padding: 20px; margin: 20px">
           <v-stepper v-model="e13" vertical>
               <v-stepper-step editable step="1" complete> 1-IDENTIFICAÇÃO </v-stepper-step>
                   <v-stepper-content step="1">
@@ -48,14 +48,14 @@
 
               <v-stepper-step editable step="3" complete> 3-COMPOSIÇÃO E INFORMAÇÕES SOBRE OS INGREDIENTES </v-stepper-step>
                   <v-stepper-content step="3">
-                    <v-data-table :headers="headers" :items="substancias" sort-by="cmm" class="elevation-1">
+                    <v-data-table :headers="headers" :items="substancias" sort-by="cmm" sort-desc="true" class="elevation-1">
                       <template v-slot:top>
                         <v-toolbar flat>
                           <v-divider class="mx-4" inset vertical></v-divider>
                           <v-spacer></v-spacer>
                           <v-dialog v-model="dialog" max-width="800px">
                             <template v-slot:activator="{ on, attrs }">
-                              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on"
+                              <v-btn color="green" dark class="mb-2" v-bind="attrs" v-on="on"
                               >Nova Substância
                               </v-btn>
                             </template>
@@ -358,8 +358,8 @@ export default {
             cod_int: '',
             produto:'',
             uso:'',
-            frase_perigo_selecionada: null,
-            frase_perigo_availables:[],
+            // frase_perigo_selecionada: null,
+            // frase_perigo_availables:[],
             limitexposicao:'',
             medcontroleng:'',
             polhos:'',
@@ -418,6 +418,40 @@ export default {
             outras_info2: '',
             legenda: '',
 
+            e13: 1,
+            dialog: false,
+            dialogDelete: false,
+            
+            headers: [
+              {
+                text: 'Substância',
+                align: 'start',
+                sortable: false,
+                value: 'substancia',
+                class:'blue lighten-3 subtitle-1 font-weight-black'
+              },
+              { text: 'CAS', value: 'cas', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Formula Molecular', value: 'fm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Peso Molecular', value: 'pm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Concentração (M/M)', value: 'cmm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Actions', value: 'actions', sortable: false, class:'blue lighten-3 subtitle-1 font-weight-black' },
+            ],
+            substancias: [],
+            editedIndex: -1,
+            editedItem: {
+              substancia: '',
+              cas: '',
+              fm: '',
+              pm: '',
+              cmm: '',
+            },
+            defaultItem: {
+              substancia: '',
+              cas: '',
+              fm: '',
+              pm: '',
+              cmm: '',
+            },
             idfispqRules: [
                 v => !!v || 'ID é obrigatório'
             ],
@@ -428,6 +462,26 @@ export default {
             idFispq: null
         }
     },
+
+    computed: {
+      formTitle () {
+        return this.editedIndex === -1 ? 'Nova Substância' : 'Edit Item'
+      },
+    },
+
+    watch: {
+      dialog (val) {
+        val || this.close()
+      },
+      dialogDelete (val) {
+        val || this.closeDelete()
+      },
+    },
+
+    created () {
+      this.initialize()
+    },
+
     mounted() {
         this.idFispq = this.$route.params.id;
         this.getFispq();
@@ -516,6 +570,9 @@ export default {
                 this.outras_info2 = response.data.fispq.outras_info2;
                 this.legenda = response.data.fispq.legenda;
 
+                this.substancias= response.data.fispq.substancias;
+
+
 
             } catch (err) {
                 this.fispqs = [];
@@ -526,11 +583,88 @@ export default {
                 const data = {
                 idfispq: this.idfispq,
                 produto: this.produto,
+                cod_int: this.cod_int,
+                uso: this.uso,
+                inalacao: this.inalacao,
+                cont_olhos: this.cont_olhos,
+                cont_pele: this.cont_pele,
+                ingestao: this.ingestao,
+                sintomas: this.sintomas,
+                medico: this.medico,
+                extincao: this.extincao,
+                perigo_esp: this.perigo_esp,
+                medidas_protecao: this.medidas_protecao,
+                servico_emergencia: this.servico_emergencia,
+                servico_emergencia2: this.servico_emergencia2,
+                precaucao_ambiente: this.precaucao_ambiente,
+                metodos_materiais: this.metodos_materiais,
+                manuseio_seguro: this.manuseio_seguro,
+                medidas_higiene: this.medidas_higiene,
+                condicoes_armazenamento: this.condicoes_armazenamento,
                 limitexposicao: this.limitexposicao,
                 medcontroleng: this.medcontroleng,
                 polhos: this.polhos,
                 ppele: this.ppele,
                 prespiratoria: this.prespiratoria,
+                ptermicos: this.ptermicos,
+                aspecto: this.aspecto,
+                odor: this.odor,
+                ph: this.ph,
+                fusao: this.fusao,
+                ebulicao: this.ebulicao,
+                fulgor: this.fulgor,
+                evaporacao: this.evaporacao,
+                inflamabilidade: this.inflamabilidade,
+                explosividade: this.explosividade,
+                pvapor: this.pvapor,
+                dvapor: this.dvapor,
+                drelativa: this.drelativa,
+                solubilidade: this.solubilidade,
+                particao: this.particao,
+                autoignicao: this.autoignicao,
+                decomposicao: this.decomposicao,
+                viscosidade: this.viscosidade,
+                informacoes: this.informacoes,
+                reatividade: this.reatividade,
+                estabilidadeq: this.estabilidadeq,
+                rperigosas: this.rperigosas,
+                caseremevitadas: this.caseremevitadas,
+                incompativeis: this.incompativeis,
+                pdecomposicao: this.pdecomposicao,
+                toxicidadea: this.toxicidadea,
+                cpele: this.cpele,
+                srespiratoria: this.srespiratoria,
+                mutagenicidade: this.mutagenicidade,
+                carcinogenicidade: this.carcinogenicidade,
+                reproducao: this.reproducao,
+                exposicaou: this.exposicaou,
+                exposicaor: this.exposicaor,
+                aspiracao: this.aspiracao,
+                ecotoxidade: this.ecotoxidade,
+                degradabilidade: this.degradabilidade,
+                bioacumulativo: this.bioacumulativo,
+                mobilidade: this.mobilidade,
+                outros_efeitos: this.outros_efeitos,
+                destinacaofinal: this.destinacaofinal,
+                terrestre: this.terrestre,
+                onu: this.onu,
+                nome_embarque: this.nome_embarque,
+                classe: this.classe,
+                n_risco: this.n_risco,
+                grupo_emb: this.grupo_emb,
+                hidroviario: this.hidroviario,
+                aereo: this.aereo,
+                regulamentacoes: this.regulamentacoes,
+                outras_info: this.outras_info,
+                outras_info2: this.outras_info2,
+                legenda: this.legenda,
+                
+                substancias: this.substancias,
+                // substancia: this.substancia,
+                // cas: this.cas,
+                // fm: this.fm,
+                // pm: this.pm,
+                // cmm: this.cmm,
 
                 idfispqRules: [
                     v => !!v || 'Id é obrigatório'
@@ -546,7 +680,7 @@ export default {
                 this.reset();
                 setTimeout(() => {
                     this.goToList();
-                }, 5000);
+                }, 1000);
 
             } catch (err) {
                 console.log(err);
@@ -558,6 +692,49 @@ export default {
         reset() {
             this.$refs.form.reset();
         },
-    }
-}
+
+      editItem (item) {
+        this.editedIndex = this.substancias.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
+
+      deleteItem (item) {
+        this.editedIndex = this.substancias.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
+
+      deleteItemConfirm () {
+        this.substancias.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
+
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete () {
+        this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.substancias[this.editedIndex], this.editedItem)
+        } else {
+          this.substancias.push(this.editedItem)
+        }
+        this.close()
+      },
+    },
+
+  }
 </script>
