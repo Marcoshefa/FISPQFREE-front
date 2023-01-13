@@ -39,4 +39,8 @@ export default {
     getAllFrase () {
         return Api({}).get('/fispq/frase_perigo')
     },
+
+    getFrasesONU (n_onu) {
+        return Api({}).get('/fispq/frases_by_onu/' + n_onu)
+    },
 }

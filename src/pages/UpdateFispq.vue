@@ -149,22 +149,63 @@
                       <v-btn color="primary" @click="e13 = 4"> Continue </v-btn>
                   </v-stepper-content>
 
-                  <v-stepper-step editable step="4" complete> 8 - CONTROLE DE EXPOSIÇÃO E PROTEÇÃO INDIVIDUAL </v-stepper-step>
+                  <v-stepper-step editable step="4" complete> 4 - MEDIDAS DE PRIMEIROS SOCORROS </v-stepper-step>
                   <v-stepper-content step="4">
+                      <v-text-field v-model="inalacao" name="input-5-1" :rules="rules250" label="EM CASO DE INALAÇÃO:" outlined required></v-text-field>
+                      <v-text-field v-model="cont_pele" name="input-5-1" :rules="rules2500" label="EM CASO DE CONTATO COM A PELE:" outlined required></v-text-field>
+                      <v-text-field v-model="cont_olhos" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM OS OLHOS:" outlined required></v-text-field>
+                      <v-text-field v-model="ingestao" name="input-5-1" :rules="rules250" label="EM CASO DE INGESTÃO:" outlined required></v-text-field>
+                      <v-text-field v-model="sintomas" name="input-5-1" :rules="rules250" label="Sintomas e efitos mais importantes, agudos ou tardios:" outlined required></v-text-field>
+                      <v-text-field v-model="medico" name="input-5-1" :rules="rules250" label="Notas para o médico" outlined required></v-text-field>
+                      <v-btn @click="e13 = 3" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 5"> Continue </v-btn>
+                  </v-stepper-content>
+
+                  <v-stepper-step editable step="5" complete> 5 - MEDIDAS DE COMBATE A INCÊNDIO </v-stepper-step>
+                  <v-stepper-content step="5">
+                      <v-text-field v-model="extincao" name="input-5-1" :rules="rules250" label="Medidas de extinção apropriados" outlined required></v-text-field>
+                      <v-text-field v-model="perigo_esp" name="input-5-1" :rules="rules90" label="Perigos específicos da substância ou mistura:" outlined required></v-text-field>
+                      <v-text-field v-model="medidas_protecao" name="input-5-1" :rules="rules90" label="Medidas de proteção da equipe de combate a incêndio" outlined required></v-text-field>
+                      <v-btn @click="e13 = 4" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 6"> Continue </v-btn>
+                    </v-stepper-content>
+
+                  <v-stepper-step editable step="6" complete> 6 - MEDIDAS DE CONTROLE PARA DERRAMAMENTO OU VAZAMENTO </v-stepper-step>
+                  <v-stepper-content step="6">
+                      <v-text-field v-model="servico_emergencia" name="input-5-1" label="Para o pessoal que não faz parte do serviço de emergência" outlined required></v-text-field>
+                      <v-text-field v-model="servico_emergencia2" name="input-5-1" label="Para o pessoal do serviço de emergência" outlined required></v-text-field>
+                      <v-text-field v-model="precaucao_ambiente" name="input-5-1" label="Precauções para o meio ambiente" outlined required></v-text-field>
+                      <v-text-field v-model="metodos_materiais" name="input-5-1" label="Métodos e materiais para a contenção da limpeza" outlined required></v-text-field>
+                      <v-btn @click="e13 = 5" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 7"> Continue </v-btn>
+                    </v-stepper-content>
+
+                    <v-stepper-step editable step="7" complete> 7 - MANUSEIO E ARMAZENAMENTO </v-stepper-step>
+                  <v-stepper-content step="7">
+                      <v-text-field v-model="manuseio_seguro" name="input-5-1" label="Precauções para o manuseio seguro" outlined required></v-text-field>
+                      <v-text-field v-model="medidas_higiene" name="input-5-1" label="Medidas de higiene" outlined required></v-text-field>
+                      <v-text-field v-model="condicoes_armazenamento" name="input-5-1" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
+                      <v-btn @click="e13 = 6" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 8"> Continue </v-btn>
+                    </v-stepper-content>
+
+                  <v-stepper-step editable step="8" complete> 8 - CONTROLE DE EXPOSIÇÃO E PROTEÇÃO INDIVIDUAL </v-stepper-step>
+                  <v-stepper-content step="8">
+
+
                       <v-textarea counter label="Limite de exposição" :rules500="rules" :value="limitexposicao"></v-textarea>
-                      <!-- <v-text-field v-model="limitexposicao" name="input-5-1" :rules="rules90" label="Limite de exposição" outlined required></v-text-field> -->
                       <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field>
                       <v-text-field v-model="polhos" name="input-5-1" :rules="rules90" label="Proteção para os olhos/face" outlined required></v-text-field>
                       <v-text-field v-model="ppele" name="input-5-1" :rules="rules90" label="Proteção da pele" outlined required></v-text-field>
                       <v-text-field v-model="prespiratoria" name="input-5-1" :rules="rules90" label="Proteção respiratória" outlined required></v-text-field>
                       <v-text-field v-model="ptermicos" name="input-5-1" :rules="rules90" label="Perigos térmicos" outlined required></v-text-field>
 
-                      <v-btn @click="e13 = 3" style="background: yellow; margin: 15px">Voltar</v-btn>
-                      <v-btn color="primary" @click="e13 = 5"> Continue </v-btn>
+                      <v-btn @click="e13 = 7" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 9"> Continue </v-btn>
                   </v-stepper-content>
 
-                  <v-stepper-step editable step="5" complete> 9-PROPRIEDADES FISICAS E QUÍMICAS </v-stepper-step>
-                  <v-stepper-content step="5">
+                  <v-stepper-step editable step="9" complete> 9-PROPRIEDADES FISICAS E QUÍMICAS </v-stepper-step>
+                  <v-stepper-content step="9">
                       <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
                       <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor e limite de cor" outlined required></v-text-field>
                       <v-text-field v-model="ph" name="input-5-1" :rules="rules45" label="pH" outlined required></v-text-field>
@@ -197,13 +238,13 @@
                         <a href ="https://www.atsdr.cdc.gov/toxprofiledocs/index.html" target="_blank">Agecy for toxic Substances and Disease Registry</a>
                       </div>
 
-                      <v-btn @click="e13 = 4" style="background: yellow; margin: 15px">Voltar</v-btn>
-                      <v-btn color="primary" @click="e13 =6"> Continue </v-btn>
+                      <v-btn @click="e13 = 8" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 =10"> Continue </v-btn>
 
                   </v-stepper-content>
 
-                  <v-stepper-step editable step="6" complete> 10-ESTABILIDADE E REATIVIDADE </v-stepper-step>
-                  <v-stepper-content step="6">
+                  <v-stepper-step editable step="10" complete> 10-ESTABILIDADE E REATIVIDADE </v-stepper-step>
+                  <v-stepper-content step="10">
                     <v-text-field v-model="reatividade" name="input-5-1" :rules="rules90" label="Reatividade" outlined required></v-text-field>
                     <v-text-field v-model="estabilidadeq" name="input-5-1" :rules="rules250" label="Estabilidade química" outlined required></v-text-field>
                     <v-text-field v-model="rperigosas" name="input-5-1" :rules="rules250" label="Possibilidade de reações perigosas" outlined required></v-text-field>
@@ -216,13 +257,13 @@
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
 
-                      <v-btn @click="e13 = 5" style="background: yellow; margin: 15px">Voltar</v-btn>
-                      <v-btn color="primary" @click="e13 = 7"> Continue </v-btn>
+                      <v-btn @click="e13 = 9" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 11"> Continue </v-btn>
                   
                     </v-stepper-content>
 
-                  <v-stepper-step editable step="7" complete> 11-INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
-                    <v-stepper-content step="7">
+                  <v-stepper-step editable step="11" complete> 11-INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
+                    <v-stepper-content step="11">
                     <v-text-field v-model="toxicidadea" name="input-5-1" :rules="rules250" label="Toxicidade" outlined required></v-text-field>
                     <v-text-field v-model="cpele" name="input-5-1" :rules="rules250" label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
                     <v-text-field v-model="srespiratoria" name="input-5-1" :rules="rules45" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
@@ -247,12 +288,12 @@
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
 
-                    <v-btn @click="e13 = 6" style="background: yellow; margin: 15px">Voltar</v-btn>
-                    <v-btn color="primary" @click="e13 = 8"> Continue </v-btn>
+                    <v-btn @click="e13 = 10" style="background: yellow; margin: 15px">Voltar</v-btn>
+                    <v-btn color="primary" @click="e13 = 12"> Continue </v-btn>
                     </v-stepper-content>
 
-                  <v-stepper-step editable step="8" complete> 12-INFORMAÇÕES ECOLÓGICAS </v-stepper-step>
-                    <v-stepper-content step="8">
+                  <v-stepper-step editable step="12" complete> 12-INFORMAÇÕES ECOLÓGICAS </v-stepper-step>
+                    <v-stepper-content step="12">
                     <v-text-field v-model="ecotoxidade" name="input-5-1" label="Ecotoxidade" outlined required></v-text-field>
                     <v-text-field v-model="degradabilidade" name="input-5-1" label="Persistência e degradabilidade" outlined required></v-text-field>
                     <v-text-field v-model="bioacumulativo" name="input-5-1" label="Potencial bioacumulativo" outlined required></v-text-field>
@@ -267,25 +308,28 @@
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
 
-                    <v-btn @click="e13 = 7" style="background: yellow; margin: 15px">Voltar</v-btn>
-                    <v-btn color="primary" @click="e13 = 9"> Continue </v-btn>
+                    <v-btn @click="e13 = 11" style="background: yellow; margin: 15px">Voltar</v-btn>
+                    <v-btn color="primary" @click="e13 = 13"> Continue </v-btn>
                   </v-stepper-content>
 
-                  <v-stepper-step editable step="9" complete> 13-CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
-                    <v-stepper-content step="9">
+                  <v-stepper-step editable step="13" complete> 13-CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
+                    <v-stepper-content step="13">
                       <v-container fluid>
                         <v-textarea counter label="Destinação Final" :rules500="rules" :value="destinacaofinal"></v-textarea>
                       </v-container>
                       
-                        <v-btn @click="e13 = 8" style="background: yellow; margin: 15px">Voltar</v-btn>
-                        <v-btn color="primary" @click="e13 = 10"> Continue </v-btn>
+                        <v-btn @click="e13 = 12" style="background: yellow; margin: 15px">Voltar</v-btn>
+                        <v-btn color="primary" @click="e13 = 14"> Continue </v-btn>
                     </v-stepper-content>
                 
-                  <v-stepper-step editable step="10" complete> 14-INFORMAÇÕES SOBRE TRANSPORTE </v-stepper-step>
-                    <v-stepper-content step="10">
+                  <v-stepper-step editable step="14" complete> 14-INFORMAÇÕES SOBRE TRANSPORTE </v-stepper-step>
+                    <v-stepper-content step="14">
                       <v-container fluid>
                         <v-textarea counter label="TERRESTRE" :rules500="rules" :value="terrestre"></v-textarea>
+
                         <v-text-field v-model="onu" name="input-5-1" label="Número ONU" outlined required></v-text-field>
+                        <v-btn @click="getFrasesByONU()">S</v-btn>
+
                         <v-text-field v-model="nome_embarque" name="input-5-1" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classe" name="input-5-1" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="n_risco" name="input-5-1" label="Número de risco" outlined required></v-text-field>
@@ -304,36 +348,36 @@
                         <v-text-field v-model="embalagema" name="input-5-1" label="Grupo de embalagem" outlined required></v-text-field>
                       </v-container>
                       
-                      <v-btn @click="e13 = 9" style="background: yellow; margin: 15px">Voltar</v-btn>
-                      <v-btn color="primary" @click="e13 = 11"> Continue </v-btn>
+                      <v-btn @click="e13 = 13" style="background: yellow; margin: 15px">Voltar</v-btn>
+                      <v-btn color="primary" @click="e13 = 15"> Continue </v-btn>
                     </v-stepper-content>
                   
 
-                  <v-stepper-step editable step="11" complete> 15-INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
-                    <v-stepper-content step="11">
+                  <v-stepper-step editable step="15" complete> 15-INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
+                    <v-stepper-content step="15">
                       <v-container fluid>
                         <v-textarea counter label="Regulamentações" :rules500="rules" :value="iregulamentacao"></v-textarea>
                       </v-container>
                       
                       
-                        <v-btn @click="e13 = 10" style="background: yellow; margin: 15px">Voltar</v-btn>
-                        <v-btn color="primary" @click="e13 = 12"> Continue </v-btn>
+                        <v-btn @click="e13 = 14" style="background: yellow; margin: 15px">Voltar</v-btn>
+                        <v-btn color="primary" @click="e13 = 16"> Continue </v-btn>
                     </v-stepper-content>
 
-                    <v-stepper-step editable step="12" complete> 16-OUTRAS INFORMAÇÕES </v-stepper-step>
-                    <v-stepper-content step="12">
+                    <v-stepper-step editable step="16" complete> 16-OUTRAS INFORMAÇÕES </v-stepper-step>
+                    <v-stepper-content step="16">
                       <v-container fluid>
                         <v-textarea counter label="RINFORMAÇÕES" :rules500="rules" :value="iregulamentacao"></v-textarea>
                       </v-container>
                       
-                        <v-btn @click="e13 = 11" style="background: yellow; margin: 15px">Voltar</v-btn>
-                        <v-btn color="primary" @click="e13 = 12"> Continue </v-btn>
+                        <v-btn @click="e13 = 15" style="background: yellow; margin: 15px">Voltar</v-btn>
+                        <!-- <v-btn color="primary" @click="e13 = 16"> Continue </v-btn> -->
                     </v-stepper-content>
 
                   </v-stepper>
-                  <v-btn :disabled="!valid" color="success" class="mr-4" @click="addFispq">
+                  <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="addFispq">
                     Cadastrar
-                  </v-btn>
+                  </v-btn> -->
         
 
             <v-btn :disabled="!valid" color="success" class="mr-4" @click="updateFispq">
@@ -417,6 +461,26 @@ export default {
             outras_info: '',
             outras_info2: '',
             legenda: '',
+            inalacao:'',
+            cont_pele:'',
+            cont_olhos:'',
+            ingestao:'',
+            sintomas:'',
+            medico:'',
+            extincao:'',
+            perigo_esp:'',
+            medidas_protecao:'',
+            servico_emergencia:'',
+            servico_emergencia2:'',
+            precaucao_ambiente:'',
+            metodos_materiais:'',
+            manuseio_seguro:'',
+            medidas_higiene:'',
+            condicoes_armazenamento:'', 
+
+            pcontrole:'',
+            cengenharia:'',
+            mppessoal:'',
 
             e13: 1,
             dialog: false,
@@ -569,6 +633,10 @@ export default {
                 this.outras_info = response.data.fispq.outras_info;
                 this.outras_info2 = response.data.fispq.outras_info2;
                 this.legenda = response.data.fispq.legenda;
+                
+                this.pcontrole = response.data.fispq.pcontrole
+                this.cengenharia = response.data.fispq.cengenharia
+                this.mppessoal = response.data.fispq.mppessoal
 
                 this.substancias= response.data.fispq.substancias;
 
@@ -659,6 +727,11 @@ export default {
                 outras_info2: this.outras_info2,
                 legenda: this.legenda,
                 
+                pcontrole: this.pcontrole,
+                cengenharia: this.cengenharia,
+                mppessoal: this.mppessoal,
+
+                
                 substancias: this.substancias,
                 // substancia: this.substancia,
                 // cas: this.cas,
@@ -684,6 +757,31 @@ export default {
 
             } catch (err) {
                 console.log(err);
+            }
+        },
+        async getFrasesByONU() {
+            try {
+                const response = await FispqService.getFrasesONU(this.onu);
+                
+                this.inalacao = response.data['frases']['4.1'];
+                this.cont_olhos = response.data['frases']['4.2'];
+                this.cont_pele = response.data['frases']['4.3'];
+                this.ingestao = response.data['frases']['4.4'];
+                this.sintomas = response.data['frases']['4.5'];
+                this.medico = response.data['frases']['4.6'];
+                this.extincao = response.data['frases']['5.1'];
+                this.perigo_esp = response.data['frases']['5.2'];
+                this.medidas_protecao = response.data['frases']['5.3'];
+                this.servico_emergencia = response.data['frases']['6.1'];
+                this.servico_emergencia2 = response.data['frases']['6.2'];
+                this.precaucao_ambiente = response.data['frases']['6.3'];
+                this.metodos_materiais = response.data['frases']['6.4'];
+                this.manuseio_seguro = response.data['frases']['7.1'];
+                this.medidas_higiene = response.data['frases']['7.2']
+                this.condicoes_armazenamento = response.data['frases']['7.3']
+
+            } catch (err) {
+              console.log(err)
             }
         },
         goToList() {
