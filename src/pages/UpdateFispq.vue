@@ -463,6 +463,7 @@ export default {
             legenda: '',
             inalacao:'',
             cont_pele:'',
+            loculares:'',
             cont_olhos:'',
             ingestao:'',
             sintomas:'',

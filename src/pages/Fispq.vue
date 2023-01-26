@@ -70,7 +70,7 @@ export default {
                 { text: 'ID', align: 'start', value: 'idFispq', class:'blue lighten-3 subtitle-1 font-weight-black'},
                 { text: 'PRODUTO', align: 'start', value: 'produto', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'ONU', align: 'start', value: 'onu', class:'blue lighten-3 subtitle-1 font-weight-black' },
-                { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'blue lighten-3 subtitle-1 font-weight-black', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'nome_embarque', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'DATA DE CRIAÇÃO', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'DATA DE ATUALIZAÇÃO', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'AÇÕES', align: 'start', value: 'actions', class:'blue lighten-3 subtitle-1 font-weight-black' }

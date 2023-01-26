@@ -43,4 +43,13 @@ export default {
     getFrasesONU (n_onu) {
         return Api({}).get('/fispq/frases_by_onu/' + n_onu)
     },
+
+    getClassificacao () {
+        return Api({}).get('/fispq/classificacao/')
+    },
+
+    getAllFrasesClassificacaoByIDS(nums) {
+        nums = nums.join(',');
+        return Api({}).get('/fispq/classificacao/frases?nums=' + nums);
+    },
 }
