@@ -35,8 +35,9 @@
               <v-stepper-step editable step="2" complete> 2 - CLASSIFICAÇÃO DE PERIGO DO PRODUTO </v-stepper-step>
                   <v-stepper-content step="2">
                     <div id="app">
-                      <v-app id="inspire">
-                        <v-container fluid>
+
+
+                      <!-- <img src="@asset/images/pictogramas/${}" alt=""> -->
                           <v-select
                         
                             v-model="selectedClassificacao"
@@ -66,44 +67,12 @@
                               </v-list-item>
                               <v-divider class="mt-2"></v-divider>
                             </template>
-                            <template v-slot:append-item>
-                              <v-divider class="mb-2"></v-divider>
-                              <v-list-item disabled>
-                                <v-list-item-avatar color="grey lighten-3">
-                                  <v-icon>
-                                    mdi-food-apple
-                                  </v-icon>
-                                </v-list-item-avatar>
-                                <v-list-item-content v-if="likesAllClassificacao">
-                                  <v-list-item-title>
-                                    Holy smokes, someone call the fruit police!
-                                  </v-list-item-title>
-                                </v-list-item-content>
-                      
-                                <v-list-item-content v-else-if="likesSomeClassificacao">
-                                  <v-list-item-title>
-                                    Classificacao Count
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle>
-                                    {{ selectedClassificacao.length }}
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                                <v-list-item-content v-else>
-                                  <v-list-item-title>
-                                    Escolha uma classificação de perigo?
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle>
-                                    Selecione uma das categorias acima!
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </template>
+                            
                           </v-select>
-                        </v-container>
-                      </v-app>
+
                     </div>
-                    <v-textarea counter label="Frase de Perigo" :value="todas_frases_Perigo"></v-textarea>
-                    <v-textarea counter label="Frase de Precaução" :value="todas_frases_Precaucao"></v-textarea>
+                    <v-textarea  v-model="todas_frases_Perigo" counter label="Frase de Perigo"></v-textarea>
+                    <v-textarea v-model="todas_frases_Precaucao" counter label="Frase de Precaução"></v-textarea>
                     <v-text-field v-model="frase_Advertencia" name="input-5-1" rules500="rules" label="Frase de Advertência" outlined required></v-text-field> 
                     <v-btn @click="e13 = 1" style="background: yellow; margin: 10px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 3" style="margin: 10px"> Continue </v-btn>
@@ -243,16 +212,16 @@
 
                     <v-stepper-step editable step="7" complete> 7 - MANUSEIO E ARMAZENAMENTO </v-stepper-step>
                   <v-stepper-content step="7">
-                      <v-text-field v-model="manuseio_seguro" name="input-5-1" ::rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
-                      <v-text-field v-model="medidas_higiene" name="input-5-1" ::rules="rules500" label="Medidas de higiene" outlined required></v-text-field>
-                      <v-text-field v-model="condicoes_armazenamento" name="input-5-1" ::rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
+                      <v-text-field v-model="manuseio_seguro" name="input-5-1" :rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
+                      <v-text-field v-model="medidas_higiene" name="input-5-1" :rules="rules500" label="Medidas de higiene" outlined required></v-text-field>
+                      <v-text-field v-model="condicoes_armazenamento" name="input-5-1" :rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
                       <v-btn @click="e13 = 6" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 8"> Continue </v-btn>
                     </v-stepper-content>
 
                   <v-stepper-step editable step="8" complete> 8 - CONTROLE DE EXPOSIÇÃO E PROTEÇÃO INDIVIDUAL </v-stepper-step>
                   <v-stepper-content step="8">
-                      <v-textarea counter label="Limite de exposição" ::rules="rules500" :value="limitexposicao"></v-textarea>
+                      <v-textarea v-model="limitexposicao" counter label="Limite de exposição" :rules="rules500"></v-textarea>
                       <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field>
                       <v-text-field v-model="polhos" name="input-5-1" :rules="rules90" label="Proteção para os olhos/face" outlined required></v-text-field>
                       <v-text-field v-model="ppele" name="input-5-1" :rules="rules90" label="Proteção da pele" outlined required></v-text-field>
@@ -323,7 +292,7 @@
 
                   <v-stepper-step editable step="11" complete> 11 - INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="11">
-                    <v-textarea counter label="Toxicidade" ::rules="rules500" :value="toxicidadea"></v-textarea>
+                    <v-textarea v-model="toxicidadea" counter label="Toxicidade" :rules="rules500"></v-textarea>
                     <v-text-field v-model="cpele" name="input-5-1" :rules="rules250" label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
                     <v-text-field v-model="loculares" name="input-5-1" :rules="rules250" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
                     <v-text-field v-model="srespiratoria" name="input-5-1" :rules="rules250" label="Sensibilização respiratória ou à pele" outlined required></v-text-field>
@@ -375,7 +344,7 @@
                   <v-stepper-step editable step="13" complete> 13 - CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
                     <v-stepper-content step="13">
                       <v-container fluid>
-                        <v-textarea counter label="Destinação Final" ::rules="rules500" :value="destinacaofinal"></v-textarea>
+                        <v-textarea counter label="Destinação Final" :rules="rules500" :value="destinacaofinal"></v-textarea>
                       </v-container>
                       
                         <v-btn @click="e13 = 12" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -385,19 +354,19 @@
                   <v-stepper-step editable step="14" complete> 14 - INFORMAÇÕES SOBRE TRANSPORTE </v-stepper-step>
                     <v-stepper-content step="14">
                       <v-container fluid>
-                        <v-textarea counter label="TERRESTRE" ::rules="rules500" :value="terrestre"></v-textarea>
+                        <v-textarea v-model="terrestre" counter label="TERRESTRE" :rules="rules500"></v-textarea>
                         <v-text-field v-model="onu" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="nome_embarque" name="input-5-1"  label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classe" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="n_risco" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="grupo_emb" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
-                        <v-textarea counter label="HIDROVIÁRIO" :rules="rules500" :value="hidroviario"></v-textarea>
+                        <v-textarea v-model="hidroviario" counter label="HIDROVIÁRIO" :rules="rules500"></v-textarea>
                         <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classeh" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoh" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="embalagemh" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
-                        <v-textarea counter label="AÉREO" ::rules="rules500" :value="aereo"></v-textarea>
+                        <v-textarea v-model="aereo" counter label="AÉREO" :rules="rules500"></v-textarea>
                         <v-text-field v-model="onua" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarquea" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classea" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
@@ -412,7 +381,7 @@
                   <v-stepper-step editable step="15" complete> 15 - INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
                     <v-stepper-content step="15">
                       <v-container fluid>
-                        <v-textarea counter label="Regulamentações" ::rules="rules500" :value="regulamentacoes"></v-textarea>
+                        <v-textarea v-model="regulamentacoes" counter label="Regulamentações" :rules="rules500"></v-textarea>
                       </v-container>
                                             
                         <v-btn @click="e13 = 14" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -422,7 +391,7 @@
                     <v-stepper-step editable step="16" complete> 16 - OUTRAS INFORMAÇÕES </v-stepper-step>
                     <v-stepper-content step="16">
                       <v-container fluid>
-                        <v-textarea counter label="INFORMAÇÕES" ::rules="rules500" :value="oinformacoes"></v-textarea>
+                        <v-textarea v-model="outras_info" counter label="INFORMAÇÕES" :rules="rules500"></v-textarea>
                       </v-container>
                       
                         <v-btn @click="e13 = 15" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -514,11 +483,8 @@ export default {
       riscoa:'',
       embalagema:'',
       regulamentacoes:'Decreto Federal nº 2.657, de 3 de julho de 1998. \nNorma ABNT-NBR 14725:2012.\nPortaria n° 229 de 24 de maio de 2011.',
-      oinformacoes:'Centros de Informações Toxicológicas\nBelo Horizonte - Serviço de Toxicologia de Minas Gerais - Hospital João XXIII\nFone: (31) 3239.9224/3239.9223 (Hospital) (31)3239-9308 / 3224-4000 (Tel. CIT) Fax: (31) 3239.9260(CIT).\n\nPorto Alegre Centro de Informações Toxicológicas do Rio Grande do Sul.\nFone: (51) 3217.1751 (Tel. CIT) Fax: (51) 3217.9067 Atendimento: 0800 78 02 00.\nRecife - Centro de Assistência Toxicológica de Pernambuco - Hospital da Restauração - 1º andar.\nFone: (81) 3421.5444 R. 151 (Tel. Hospital) Fax: (81) 3421.5927 / 3423-8263.\nRio de Janeiro- Centro de Controle de Intoxicações do Rio de Janeiro - Hospital Universitário Clementino Fraga Filho.\nFone: (21) 2573.3244/2290-3344 (Tel. CIT) - Fax: (21) 2573-7079 (CIT).\nSalvador- Centro de Informações Anti-Veneno da Bahia - CIAVE - Hospital Geral Roberto Santos.\nFone: (71) 387.3414/387-4343 e 0800 284 43 43 Fax: (71) 387.3414.\nSão Paul- Centro de Controle de Intoxicações de São Paulo - Hospital Municipal Dr. Artur Ribeiro de Saboya.\nFone/Fax: (11) 5012/2399 (Tel. CIT) (11) 5012-5311 (atendimento médico) Atendimento: 0800 771 37 33.\nLegendas e abreviaturas\nCAS - Chemical Abstracts Service\nONU – Organização das Nações Unidas\nACGIH - American Conference of Governmental Industrial Hygienists\nTLV - Threshold Limit Values (limites de exposição)\nTWA – Time-Weighted Average (média ponderada pelo tempo)\nSTEL – Short-Term Exposure Limit (exposição de curta duração)\nDL50 – Dose letal 50%\nCL50 – Concentração letal 50%\nCE50 – Concentração Efetiva\nO não cumprimento das informações acima descritas, isenta o fabricante de responsabilidade pelo uso indevido do produto. As indicações baseiam-se no nível atual de nossos conhecimentos e servem para a caracterização do produto no que se refere às medidas de segurança a tomar. Estas indicações não implicam em qualquer garantia das propriedades do produto acima descrito.\nPermitido fazer número ilimitado de cópias físicas, somente para uso interno.',
-      outras_info:'',
-      outras_info2: '',
+      outras_info:'Centros de Informações Toxicológicas\nBelo Horizonte - Serviço de Toxicologia de Minas Gerais - Hospital João XXIII\nFone: (31) 3239.9224/3239.9223 (Hospital) (31)3239-9308 / 3224-4000 (Tel. CIT) Fax: (31) 3239.9260(CIT).\n\nPorto Alegre Centro de Informações Toxicológicas do Rio Grande do Sul.\nFone: (51) 3217.1751 (Tel. CIT) Fax: (51) 3217.9067 Atendimento: 0800 78 02 00.\nRecife - Centro de Assistência Toxicológica de Pernambuco - Hospital da Restauração - 1º andar.\nFone: (81) 3421.5444 R. 151 (Tel. Hospital) Fax: (81) 3421.5927 / 3423-8263.\nRio de Janeiro- Centro de Controle de Intoxicações do Rio de Janeiro - Hospital Universitário Clementino Fraga Filho.\nFone: (21) 2573.3244/2290-3344 (Tel. CIT) - Fax: (21) 2573-7079 (CIT).\nSalvador- Centro de Informações Anti-Veneno da Bahia - CIAVE - Hospital Geral Roberto Santos.\nFone: (71) 387.3414/387-4343 e 0800 284 43 43 Fax: (71) 387.3414.\nSão Paul- Centro de Controle de Intoxicações de São Paulo - Hospital Municipal Dr. Artur Ribeiro de Saboya.\nFone/Fax: (11) 5012/2399 (Tel. CIT) (11) 5012-5311 (atendimento médico) Atendimento: 0800 771 37 33.\nLegendas e abreviaturas\nCAS - Chemical Abstracts Service\nONU – Organização das Nações Unidas\nACGIH - American Conference of Governmental Industrial Hygienists\nTLV - Threshold Limit Values (limites de exposição)\nTWA – Time-Weighted Average (média ponderada pelo tempo)\nSTEL – Short-Term Exposure Limit (exposição de curta duração)\nDL50 – Dose letal 50%\nCL50 – Concentração letal 50%\nCE50 – Concentração Efetiva\nO não cumprimento das informações acima descritas, isenta o fabricante de responsabilidade pelo uso indevido do produto. As indicações baseiam-se no nível atual de nossos conhecimentos e servem para a caracterização do produto no que se refere às medidas de segurança a tomar. Estas indicações não implicam em qualquer garantia das propriedades do produto acima descrito.\nPermitido fazer número ilimitado de cópias físicas, somente para uso interno.',
       loculares:'Não disponível',
-      legenda: '',
       todas_frases_Perigo:[],
       todas_frases_Precaucao:[],
       frase_Advertencia:"",
@@ -672,9 +638,9 @@ export default {
               // () = 
               const response = await FispqService.getAllFrasesClassificacaoByIDS(this.selectedClassificacao);
 
-              this.todas_frases_Perigo = response.data['frases_perigo'];
-              this.todas_frases_Precaucao = response.data['frases_precaucao'];
-              this.frase_Advertencia = response.data['frases_advertencia'];
+              this.todas_frases_Perigo = response.data['frases_perigo'].join('\n');
+              this.todas_frases_Precaucao = response.data['frases_precaucao'].join('\n');
+              this.frase_Advertencia = response.data['frases_advertencia'].join('\n');
               
 
               console.log(response);
@@ -764,9 +730,7 @@ export default {
                   aereo: this.aereo,
                   regulamentacoes: this.regulamentacoes,
                   outras_info: this.outras_info,
-                  outras_info2: this.outras_info2,
                   loculares: this.loculares,
-                  legenda: this.legenda,
                   substancias: this.substancias,
                   todas_frases_Perigo:this.todas_frases_Perigo,
                   todas_frases_Precaucao:this.todas_frases_Precaucao,
