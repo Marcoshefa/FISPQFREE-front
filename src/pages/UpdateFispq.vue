@@ -27,7 +27,7 @@
               <v-stepper-step editable step="2" complete> 2-CLASSIFICAÇÃO DE PERIGO DO PRODUTO </v-stepper-step>
                   <v-stepper-content step="2">
                     <div id="app">
-                      <v-select
+                      <!-- <v-select
                         
                             v-model="selectedClassificacao"
                             :items="classificacao"
@@ -57,7 +57,7 @@
                               <v-divider class="mt-2"></v-divider>
                             </template>
                             
-                          </v-select>
+                          </v-select> -->
 
                     </div>
                     <v-textarea  v-model="todas_frases_Perigo" counter label="Frase de Perigo"></v-textarea>
@@ -336,7 +336,7 @@
                   <v-stepper-step editable step="13" complete> 13-CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
                     <v-stepper-content step="13">
                       <v-container fluid>
-                        <v-textarea counter label="Destinação Final" :rules="rules500" :value="destinacaofinal"></v-textarea>
+                        <v-textarea v-model="destinacaofinal" counter label="Destinação Final" :rules="rules500"></v-textarea>
                       </v-container>
                       
                         <v-btn @click="e13 = 12" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -420,8 +420,6 @@ export default {
             cod_int: '',
             produto:'',
             uso:'',
-            // frase_perigo_selecionada: null,
-            // frase_perigo_availables:[],
             limitexposicao:'',
             medcontroleng:'',
             polhos:'',
@@ -496,11 +494,9 @@ export default {
             manuseio_seguro:'',
             medidas_higiene:'',
             condicoes_armazenamento:'', 
-
-            pcontrole:'',
-            cengenharia:'',
-            mppessoal:'',
-
+            todas_frases_Perigo:[],
+            todas_frases_Precaucao:[],
+            frase_Advertencia:'',
             e13: 1,
             dialog: false,
             dialogDelete: false,
@@ -593,8 +589,6 @@ export default {
                 this.manuseio_seguro = response.data.fispq.manuseio_seguro;
                 this.medidas_higiene = response.data.fispq.medidas_higiene;
                 this.condicoes_armazenamento = response.data.fispq.condicoes_armazenamento;
-                // this.frase_perigo_selecionada = response.data.fispq.frase_perigo_selecionada;
-                // this.frase_perigo_availables = response.data.fispq.frase_perigo_availables;
                 this.limitexposicao = response.data.fispq.limitexposicao;
                 this.medcontroleng = response.data.fispq.medcontroleng;
                 this.polhos = response.data.fispq.polhos;
@@ -650,16 +644,11 @@ export default {
                 this.aereo = response.data.fispq.aereo;
                 this.regulamentacoes = response.data.fispq.regulamentacoes;
                 this.outras_info = response.data.fispq.outras_info;
-                this.outras_info2 = response.data.fispq.outras_info2;
-                this.legenda = response.data.fispq.legenda;
-                
-                this.pcontrole = response.data.fispq.pcontrole
-                this.cengenharia = response.data.fispq.cengenharia
-                this.mppessoal = response.data.fispq.mppessoal
-
+                this.loculares = response.data.fispq.loculares;
                 this.substancias= response.data.fispq.substancias;
-
-
+                this.todas_frases_Perigo= response.data.fispq.todas_frases_Perigo;
+                this.todas_frases_Precaucao= response.data.fispq.todas_frases_Precaucao;
+                this.frase_Advertencia = response.data.fispq.frase_Advertencia;
 
             } catch (err) {
                 this.fispqs = [];
@@ -743,13 +732,10 @@ export default {
                 aereo: this.aereo,
                 regulamentacoes: this.regulamentacoes,
                 outras_info: this.outras_info,
-                outras_info2: this.outras_info2,
-                legenda: this.legenda,
-                
-                pcontrole: this.pcontrole,
-                cengenharia: this.cengenharia,
-                mppessoal: this.mppessoal,
-
+                loculares: this.loculares,
+                todas_frases_Perigo:this.todas_frases_Perigo,
+                todas_frases_Precaucao:this.todas_frases_Precaucao,
+                frase_Advertencia:this.frase_Advertencia,
                 
                 substancias: this.substancias,
                 // substancia: this.substancia,
