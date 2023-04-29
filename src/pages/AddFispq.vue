@@ -11,7 +11,8 @@
         <v-form ref="form" v-model="valid" lazy-validation style="background: #FFF; border-radius: 5px; padding: 20px; margin: 20px">
           <v-stepper v-model="e13" vertical>
               <v-stepper-step editable step="1" complete> 1 - IDENTIFICAÇÃO </v-stepper-step>
-                  <v-stepper-content step="1">
+              <v-stepper-content step="1" >
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="cod_int" :rules="rules20" name="input-5-1" counter="20" label="Cód. interno" outlined required></v-text-field>
                       <v-text-field v-model="produto" name="input-5-1" :rules="rules90" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
                       <v-text-field v-model="uso" name="input-5-1" :rules="rules90" counter="90" label="Principais usos recomendados para a substância ou mistura:" outlined required></v-text-field>
@@ -34,6 +35,7 @@
             
               <v-stepper-step editable step="2" complete> 2 - CLASSIFICAÇÃO DE PERIGO DO PRODUTO </v-stepper-step>
                   <v-stepper-content step="2">
+                    <div style="width: 100%; height: 10px;"></div>
                     <div id="app">
 
 
@@ -73,13 +75,30 @@
                     </div>
                     <v-textarea  v-model="todas_frases_Perigo" counter label="Frase de Perigo"></v-textarea>
                     <v-textarea v-model="todas_frases_Precaucao" counter label="Frase de Precaução"></v-textarea>
+                    
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 15px">
+                      <v-checkbox
+                        v-for="pictograma in pictogramas_disponiveis"
+                        :key="pictograma.name"
+                        v-model="pictogramas"
+                        :value="pictograma.name"
+                        style="width: 9.5%; border-radius: 10px; border: 1.5px solid #CCC;"
+                      >
+                        <template slot="label">
+                          <img :src="require(`@/assets/images/pictogramas/${pictograma.imagem}`)" :alt="pictograma.name" style="width: 95%;" />
+                        </template>
+                      </v-checkbox>
+                    </div>
+
                     <v-text-field v-model="frase_Advertencia" name="input-5-1" rules500="rules" label="Frase de Advertência" outlined required></v-text-field> 
+                    
                     <v-btn @click="e13 = 1" style="background: yellow; margin: 10px">Voltar</v-btn>
-                      <v-btn color="primary" @click="e13 = 3" style="margin: 10px"> Continue </v-btn>
+                    <v-btn color="primary" @click="e13 = 3" style="margin: 10px"> Continue </v-btn>
                   </v-stepper-content>
 
               <v-stepper-step editable step="3" complete> 3 - COMPOSIÇÃO E INFORMAÇÕES SOBRE OS INGREDIENTES </v-stepper-step>
                   <v-stepper-content step="3">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-data-table :headers="headers" :items="substancias" class="elevation-1">
                       <template v-slot:top>
                         <v-toolbar flat>
@@ -181,6 +200,7 @@
 
                   <v-stepper-step editable step="4" complete> 4 - MEDIDAS DE PRIMEIROS SOCORROS </v-stepper-step>
                   <v-stepper-content step="4">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="inalacao" name="input-5-1" :rules="rules250" label="EM CASO DE INALAÇÃO:" outlined required></v-text-field>
                       <v-text-field v-model="cont_pele" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM A PELE:" outlined required></v-text-field>
                       <v-text-field v-model="cont_olhos" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM OS OLHOS:" outlined required></v-text-field>
@@ -193,6 +213,7 @@
 
                   <v-stepper-step editable step="5" complete> 5 - MEDIDAS DE COMBATE A INCÊNDIO </v-stepper-step>
                   <v-stepper-content step="5">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="extincao" name="input-5-1" :rules="rules250" label="Medidas de extinção apropriados" outlined required></v-text-field>
                       <v-text-field v-model="perigo_esp" name="input-5-1" label="Perigos específicos da substância ou mistura:" outlined required></v-text-field>
                       <v-text-field v-model="medidas_protecao" name="input-5-1" :rules="rules90" label="Medidas de proteção da equipe de combate a incêndio" outlined required></v-text-field>
@@ -202,6 +223,7 @@
 
                   <v-stepper-step editable step="6" complete> 6 - MEDIDAS DE CONTROLE PARA DERRAMAMENTO OU VAZAMENTO </v-stepper-step>
                   <v-stepper-content step="6">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="servico_emergencia" name="input-5-1" :rules="rules500" label="Para o pessoal que não faz parte do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="servico_emergencia2" name="input-5-1" :rules="rules500" label="Para o pessoal do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="precaucao_ambiente" name="input-5-1" :rules="rules500" label="Precauções para o meio ambiente" outlined required></v-text-field>
@@ -212,6 +234,7 @@
 
                     <v-stepper-step editable step="7" complete> 7 - MANUSEIO E ARMAZENAMENTO </v-stepper-step>
                   <v-stepper-content step="7">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="manuseio_seguro" name="input-5-1" :rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
                       <v-text-field v-model="medidas_higiene" name="input-5-1" :rules="rules500" label="Medidas de higiene" outlined required></v-text-field>
                       <v-text-field v-model="condicoes_armazenamento" name="input-5-1" :rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
@@ -221,6 +244,7 @@
 
                   <v-stepper-step editable step="8" complete> 8 - CONTROLE DE EXPOSIÇÃO E PROTEÇÃO INDIVIDUAL </v-stepper-step>
                   <v-stepper-content step="8">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-textarea v-model="limitexposicao" counter label="Limite de exposição" :rules="rules500"></v-textarea>
                       <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field>
                       <v-text-field v-model="polhos" name="input-5-1" :rules="rules90" label="Proteção para os olhos/face" outlined required></v-text-field>
@@ -234,6 +258,7 @@
 
                   <v-stepper-step editable step="9" complete> 9 - PROPRIEDADES FISICAS E QUÍMICAS </v-stepper-step>
                   <v-stepper-content step="9">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
                       <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor e limite de cor" outlined required></v-text-field>
                       <v-text-field v-model="ph" name="input-5-1" :rules="rules45" label="pH" outlined required></v-text-field>
@@ -273,6 +298,7 @@
 
                   <v-stepper-step editable step="10" complete> 10 - ESTABILIDADE E REATIVIDADE </v-stepper-step>
                   <v-stepper-content step="10">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="reatividade" name="input-5-1" :rules="rules90" label="Reatividade" outlined required></v-text-field>
                     <v-text-field v-model="estabilidadeq" name="input-5-1" :rules="rules250" label="Estabilidade química" outlined required></v-text-field>
                     <v-text-field v-model="rperigosas" name="input-5-1"  :rules="rules500" label="Possibilidade de reações perigosas" outlined required></v-text-field>
@@ -292,6 +318,7 @@
 
                   <v-stepper-step editable step="11" complete> 11 - INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="11">
+                      <div style="width: 100%; height: 10px;"></div>
                     <v-textarea v-model="toxicidadea" counter label="Toxicidade" :rules="rules500"></v-textarea>
                     <v-text-field v-model="cpele" name="input-5-1" :rules="rules250" label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
                     <v-text-field v-model="loculares" name="input-5-1" :rules="rules250" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
@@ -323,6 +350,7 @@
 
                   <v-stepper-step editable step="12" complete> 12 - INFORMAÇÕES ECOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="12">
+                      <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="ecotoxidade" name="input-5-1" :rules="rules500" label="Ecotoxidade" outlined required></v-text-field>
                     <v-text-field v-model="degradabilidade" name="input-5-1" :rules="rules500" label="Persistência e degradabilidade" outlined required></v-text-field>
                     <v-text-field v-model="bioacumulativo" name="input-5-1" :rules="rules500" label="Potencial bioacumulativo" outlined required></v-text-field>
@@ -343,6 +371,7 @@
 
                   <v-stepper-step editable step="13" complete> 13 - CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
                     <v-stepper-content step="13">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea counter label="Destinação Final" :rules="rules500" :value="destinacaofinal"></v-textarea>
                       </v-container>
@@ -353,6 +382,7 @@
                 
                   <v-stepper-step editable step="14" complete> 14 - INFORMAÇÕES SOBRE TRANSPORTE </v-stepper-step>
                     <v-stepper-content step="14">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="terrestre" counter label="TERRESTRE" :rules="rules500"></v-textarea>
                         <v-text-field v-model="onu" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
@@ -380,6 +410,7 @@
                   
                   <v-stepper-step editable step="15" complete> 15 - INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
                     <v-stepper-content step="15">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="regulamentacoes" counter label="Regulamentações" :rules="rules500"></v-textarea>
                       </v-container>
@@ -390,6 +421,7 @@
 
                     <v-stepper-step editable step="16" complete> 16 - OUTRAS INFORMAÇÕES </v-stepper-step>
                     <v-stepper-content step="16">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="outras_info" counter label="INFORMAÇÕES" :rules="rules500"></v-textarea>
                       </v-container>
@@ -399,9 +431,11 @@
                     </v-stepper-content>
 
                   </v-stepper>
-                  <v-btn :disabled="!valid" color="success" class="mr-4" @click="addFispq">
-                    Cadastrar
-                  </v-btn>
+                  <div style="display: flex; justify-content: center; margin-top: 25px;">
+                    <v-btn :disabled="!valid" color="success" class="mr-4" x-large @click="addFispq">
+                      Cadastrar
+                    </v-btn>
+                </div>
         </v-form>
   </div>
 </template>
@@ -488,6 +522,7 @@ export default {
       todas_frases_Perigo:[],
       todas_frases_Precaucao:[],
       frase_Advertencia:"",
+      pictogramas: [],
       substancias: [],
       inalacao:'',
       cont_pele:'',
@@ -514,7 +549,50 @@ export default {
       checkbox2: false,
       checkbox3: false,
 
-      
+      pictogramas_disponiveis: [
+      {
+          name: 'Bomba explodindo',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'chama',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Chama sobre circulo',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Corrosão',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Bomba explodindo',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'chama',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Chama sobre circulo',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Corrosão',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'Bomba explodindo',
+          imagem: 'corrosao.png'
+        },
+        {
+          name: 'chama',
+          imagem: 'corrosao.png'
+        },
+      ],
+
+
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       
       classificacao: [],
@@ -640,8 +718,8 @@ export default {
 
               this.todas_frases_Perigo = response.data['frases_perigo'].join('\n');
               this.todas_frases_Precaucao = response.data['frases_precaucao'].join('\n');
-              this.frase_Advertencia = response.data['frases_advertencia'].join('\n');
-              
+              this.frase_Advertencia = response.data['frases_advertencia'];
+              this.pictogramas = response.data['pictogramas'];
 
               console.log(response);
 
@@ -734,7 +812,8 @@ export default {
                   substancias: this.substancias,
                   todas_frases_Perigo:this.todas_frases_Perigo,
                   todas_frases_Precaucao:this.todas_frases_Precaucao,
-                  frase_Advertencia:this.frase_Advertencia
+                  frase_Advertencia:this.frase_Advertencia,
+                  pictogramas:this.pictogramas.join(","),
 
               } 
               await FispqService.add(data);
