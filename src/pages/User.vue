@@ -113,8 +113,8 @@ export default {
                         name: user.name,
                         email: user.email,
                         celular: user.celular,
-                        created_at: new Date(user.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }),
-                        update_at: user.update_at,
+                        created_at: user.created_at ? new Date(user.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
+                        update_at: user.update_at ? new Date(user.update_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
                         permission_id: user.permission_id,
                     }
                 });
