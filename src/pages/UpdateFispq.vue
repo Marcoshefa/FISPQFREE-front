@@ -1,7 +1,6 @@
 <template>
     <div>
         <h1>Atualizando Fispq</h1>
-        {{idFispq}}
 
         <v-alert v-if="finish" shaped outlined type="success" style=" margin: 20px">
             Fispq atualizada com sucesso! Você será redirecionada para a pagina de principal.
@@ -17,6 +16,7 @@
           <v-stepper v-model="e13" vertical>
               <v-stepper-step editable step="1" complete> 1-IDENTIFICAÇÃO </v-stepper-step>
                   <v-stepper-content step="1">
+                    <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="cod_int" :rules="rules20" name="input-5-1" counter="20" label="Cód. interno" outlined required></v-text-field>
                       <v-text-field v-model="produto" name="input-5-1" :rules="rules90" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
                       <v-text-field v-model="uso" name="input-5-1" :rules="rules90" counter="90" label="Principais usos recomendados para a substância ou mistura:" outlined required></v-text-field>
@@ -26,8 +26,9 @@
             
               <v-stepper-step editable step="2" complete> 2-CLASSIFICAÇÃO DE PERIGO DO PRODUTO </v-stepper-step>
                   <v-stepper-content step="2">
+                    <div style="width: 100%; height: 10px;"></div>
                     <div id="app">
-                      <!-- <v-select
+                          <v-select
                         
                             v-model="selectedClassificacao"
                             :items="classificacao"
@@ -57,7 +58,7 @@
                               <v-divider class="mt-2"></v-divider>
                             </template>
                             
-                          </v-select> -->
+                          </v-select>
 
                     </div>
                     <v-textarea  v-model="todas_frases_Perigo" counter label="Frase de Perigo"></v-textarea>
@@ -69,6 +70,7 @@
 
               <v-stepper-step editable step="3" complete> 3-COMPOSIÇÃO E INFORMAÇÕES SOBRE OS INGREDIENTES </v-stepper-step>
                   <v-stepper-content step="3">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-data-table :headers="headers" :items="substancias" sort-by="cmm" sort-desc="true" class="elevation-1">
                       <template v-slot:top>
                         <v-toolbar flat>
@@ -172,6 +174,7 @@
 
                   <v-stepper-step editable step="4" complete> 4 - MEDIDAS DE PRIMEIROS SOCORROS </v-stepper-step>
                   <v-stepper-content step="4">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="inalacao" name="input-5-1" :rules="rules250" label="EM CASO DE INALAÇÃO:" outlined required></v-text-field>
                       <v-text-field v-model="cont_pele" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM A PELE:" outlined required></v-text-field>
                       <v-text-field v-model="cont_olhos" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM OS OLHOS:" outlined required></v-text-field>
@@ -184,6 +187,7 @@
 
                   <v-stepper-step editable step="5" complete> 5 - MEDIDAS DE COMBATE A INCÊNDIO </v-stepper-step>
                   <v-stepper-content step="5">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="extincao" name="input-5-1" :rules="rules250" label="Medidas de extinção apropriados" outlined required></v-text-field>
                       <v-text-field v-model="perigo_esp" name="input-5-1" label="Perigos específicos da substância ou mistura:" outlined required></v-text-field>
                       <v-text-field v-model="medidas_protecao" name="input-5-1" :rules="rules90" label="Medidas de proteção da equipe de combate a incêndio" outlined required></v-text-field>
@@ -193,6 +197,7 @@
 
                   <v-stepper-step editable step="6" complete> 6 - MEDIDAS DE CONTROLE PARA DERRAMAMENTO OU VAZAMENTO </v-stepper-step>
                     <v-stepper-content step="6">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-text-field v-model="servico_emergencia" name="input-5-1" :rules="rules500" label="Para o pessoal que não faz parte do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="servico_emergencia2" name="input-5-1" :rules="rules500" label="Para o pessoal do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="precaucao_ambiente" name="input-5-1" :rules="rules500" label="Precauções para o meio ambiente" outlined required></v-text-field>
@@ -203,6 +208,7 @@
 
                     <v-stepper-step editable step="7" complete> 7 - MANUSEIO E ARMAZENAMENTO </v-stepper-step>
                   <v-stepper-content step="7">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="manuseio_seguro" name="input-5-1" :rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
                       <v-text-field v-model="medidas_higiene" name="input-5-1" :rules="rules500" label="Medidas de higiene" outlined required></v-text-field>
                       <v-text-field v-model="condicoes_armazenamento" name="input-5-1" :rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
@@ -212,6 +218,7 @@
 
                   <v-stepper-step editable step="8" complete> 8 - CONTROLE DE EXPOSIÇÃO E PROTEÇÃO INDIVIDUAL </v-stepper-step>
                   <v-stepper-content step="8">
+                    <div style="width: 100%; height: 10px;"></div>
 
                       <v-textarea v-model="limitexposicao" counter label="Limite de exposição" :rules="rules500"></v-textarea>
                       <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field>
@@ -226,6 +233,7 @@
 
                   <v-stepper-step editable step="9" complete> 9-PROPRIEDADES FISICAS E QUÍMICAS </v-stepper-step>
                   <v-stepper-content step="9">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
                       <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor e limite de cor" outlined required></v-text-field>
                       <v-text-field v-model="ph" name="input-5-1" :rules="rules45" label="pH" outlined required></v-text-field>
@@ -252,9 +260,6 @@
                           <a href ="https://comptox.epa.gov/dashboard/" target="_blank">CompTox Chemicals Dashboard</a>
                       </div>
                       <div>
-                        <a href ="https://echa.europa.eu/information-on-chemicals/registered-substances" target="_blank">echa.europa</a>
-                      </div>
-                      <div>
                         <a href ="https://www.atsdr.cdc.gov/toxprofiledocs/index.html" target="_blank">Agecy for toxic Substances and Disease Registry</a>
                       </div>
 
@@ -265,6 +270,7 @@
 
                   <v-stepper-step editable step="10" complete> 10-ESTABILIDADE E REATIVIDADE </v-stepper-step>
                   <v-stepper-content step="10">
+                    <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="reatividade" name="input-5-1" :rules="rules90" label="Reatividade" outlined required></v-text-field>
                     <v-text-field v-model="estabilidadeq" name="input-5-1" :rules="rules250" label="Estabilidade química" outlined required></v-text-field>
                     <v-text-field v-model="rperigosas" name="input-5-1"  :rules="rules500" label="Possibilidade de reações perigosas" outlined required></v-text-field>
@@ -284,6 +290,7 @@
 
                   <v-stepper-step editable step="11" complete> 11-INFORMAÇÕES TOXICOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="11">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-textarea v-model="toxicidadea" counter label="Toxicidade" :rules="rules500"></v-textarea>
                     <v-text-field v-model="cpele" name="input-5-1" :rules="rules250" label="Corrosão/irritaçãoà pele" outlined required></v-text-field>
                     <v-text-field v-model="loculares" name="input-5-1" :rules="rules250" label="Lesões oculares graves/iritação ocular" outlined required></v-text-field>
@@ -315,6 +322,7 @@
 
                   <v-stepper-step editable step="12" complete> 12-INFORMAÇÕES ECOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="12">
+                      <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="ecotoxidade" name="input-5-1" :rules="rules500" label="Ecotoxidade" outlined required></v-text-field>
                     <v-text-field v-model="degradabilidade" name="input-5-1" :rules="rules500" label="Persistência e degradabilidade" outlined required></v-text-field>
                     <v-text-field v-model="bioacumulativo" name="input-5-1" :rules="rules500" label="Potencial bioacumulativo" outlined required></v-text-field>
@@ -335,8 +343,9 @@
 
                   <v-stepper-step editable step="13" complete> 13-CONSIDERAÇÕES SOBRE DESTINAÇÃO FINAL </v-stepper-step>
                     <v-stepper-content step="13">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
-                        <v-textarea v-model="destinacaofinal" counter label="Destinação Final" :rules="rules500"></v-textarea>
+                        <v-textarea v-model="destinacaofinal" counter label="Destinação Final" ></v-textarea>
                       </v-container>
                       
                         <v-btn @click="e13 = 12" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -345,6 +354,7 @@
                 
                   <v-stepper-step editable step="14" complete> 14-INFORMAÇÕES SOBRE TRANSPORTE </v-stepper-step>
                     <v-stepper-content step="14">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="terrestre" counter label="TERRESTRE" :rules="rules500"></v-textarea>
                         <v-text-field v-model="onu" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
@@ -373,6 +383,7 @@
 
                   <v-stepper-step editable step="15" complete> 15-INFORMAÇÕES SOBRE REGULAMENTAÇÕES </v-stepper-step>
                     <v-stepper-content step="15">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="regulamentacoes" counter label="Regulamentações" :rules="rules500"></v-textarea>
                       </v-container>
@@ -384,6 +395,7 @@
 
                     <v-stepper-step editable step="16" complete> 16-OUTRAS INFORMAÇÕES </v-stepper-step>
                     <v-stepper-content step="16">
+                      <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="outras_info" counter label="INFORMAÇÕES" :rules="rules500"></v-textarea>
                       </v-container>
@@ -472,7 +484,17 @@ export default {
             n_risco: '',
             grupo_emb: '',
             hidroviario: '',
+            onuh: '',
+            embarqueh: '',
+            classeh: '',
+            riscoh: '',
+            embalagemah: '',
             aereo: '',
+            onua: '',
+            embarquea: '',
+            classea: '',
+            riscoa: '',
+            embalagema: '',
             regulamentacoes: '',
             outras_info: '',
             outras_info2: '',
@@ -497,9 +519,16 @@ export default {
             todas_frases_Perigo:[],
             todas_frases_Precaucao:[],
             frase_Advertencia:'',
+            pictogramas: [],
+            substancias: [],
+
             e13: 1,
             dialog: false,
             dialogDelete: false,
+
+            classificacao: [],
+
+            selectedClassificacao: [],
             
             headers: [
               {
@@ -510,12 +539,12 @@ export default {
                 class:'blue lighten-3 subtitle-1 font-weight-black'
               },
               { text: 'CAS', value: 'cas', class:'blue lighten-3 subtitle-1 font-weight-black' },
-              { text: 'Formula Molecular', value: 'fm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Formula Molecular', value: 'fm',class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Peso Molecular', value: 'pm', class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Concentração (M/M)', value: 'cmm', class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Actions', value: 'actions', sortable: false, class:'blue lighten-3 subtitle-1 font-weight-black' },
             ],
-            substancias: [],
+            
             editedIndex: -1,
             editedItem: {
               substancia: '',
@@ -531,6 +560,7 @@ export default {
               pm: '',
               cmm: '',
             },
+
             idfispqRules: [
                 v => !!v || 'ID é obrigatório'
             ],
@@ -543,9 +573,21 @@ export default {
     },
 
     computed: {
+
+      likesAllClassificacao () {
+      return this.selectedClassificacao.length === this.classificacao.length
+      },
+      likesSomeClassificacao () {
+        return this.selectedClassificacao.length > 0 && !this.likesAllClassificacao
+        },
+      icon () {
+        if (this.likesAllClassificacao) return 'mdi-close-box'
+        if (this.likesSomeClassificacao) return 'mdi-minus-box'
+        return 'mdi-checkbox-blank-outline'
+        }, 
       formTitle () {
         return this.editedIndex === -1 ? 'Nova Substância' : 'Edit Item'
-      },
+      },     
     },
 
     watch: {
@@ -564,9 +606,57 @@ export default {
     mounted() {
         this.idFispq = this.$route.params.id;
         this.getFispq();
+        this.getFrasesClassificacao();
     },
+
     methods: {
-        async getFispq() {
+      toggle () {
+        this.$nextTick(() => {
+          if (this.likesAllClassificacao) {
+            this.selectedClassificacao = []
+          } else {
+            this.selectedClassificacao = this.classificacao.slice()
+          }
+        })
+      },
+      async getFrasesClassificacao() {
+            try {
+                const response = await FispqService.getClassificacao();
+                this.classificacao = response.data.categorias_list.map(categoria=> {
+                    return {
+                    
+                      categoria: categoria.Categoria,
+                      num:categoria.Num
+                    }
+                });
+
+            } catch (err) {
+                this.classificacao = [];
+            }
+      },
+      async getAllFrasesClassificacaoByIDS() {
+            try {
+              // const = cria a variavel
+              // response = nome da variavel
+              // await = 
+              // FispqService = ?????
+              // getFrasesONU = metodo para chamar uma rota
+              // () = 
+              const response = await FispqService.getAllFrasesClassificacaoByIDS(this.selectedClassificacao);
+
+              this.todas_frases_Perigo = response.data['frases_perigo'].join('\n');
+              this.todas_frases_Precaucao = response.data['frases_precaucao'].join('\n');
+              this.frase_Advertencia = response.data['frases_advertencia'];
+              this.pictogramas = response.data['pictogramas'];
+              this.todas_frases_classificacao = response.data['frases_classificacao'].join('\n')
+
+              console.log(response);
+
+            } catch (err) {
+              this.todas_frases_Perigo['erro']
+            }
+      },
+      async getFispq() {
             try {
                 const response = await FispqService.getOne(this.idFispq);
                 this.idfispq = response.data.fispq.idFispq;
@@ -641,7 +731,17 @@ export default {
                 this.n_risco = response.data.fispq.n_risco;
                 this.grupo_emb = response.data.fispq.grupo_emb;
                 this.hidroviario = response.data.fispq.hidroviario;
+                this.onuh = response.data.fispq.onu;
+                this.embarqueh = response.data.fispq.nome_embarque;
+                this.classeh = response.data.fispq.classe;
+                this.riscoh = response.data.fispq.n_risco;
+                this.embalagemh = response.data.fispq.grupo_emb;
                 this.aereo = response.data.fispq.aereo;
+                this.onua = response.data.fispq.onu;
+                this.embarquea = response.data.fispq.nome_embarque;
+                this.classea = response.data.fispq.classe;
+                this.riscoa = response.data.fispq.n_risco;
+                this.embalagema = response.data.fispq.grupo_emb;
                 this.regulamentacoes = response.data.fispq.regulamentacoes;
                 this.outras_info = response.data.fispq.outras_info;
                 this.loculares = response.data.fispq.loculares;
@@ -653,8 +753,20 @@ export default {
             } catch (err) {
                 this.fispqs = [];
             }
-        },
-        async updateFispq() {
+      },
+        
+        // async getcomposicao() {
+        //     try {
+        //       const response = await FispqService.getcomposicao(this.cod_int);
+        //       this.
+
+        //     } catch (err) {
+        //         this.fispqs = [];
+        //     }
+        //   },
+        
+
+      async updateFispq() {
             try {
                 const data = {
                 idfispq: this.idfispq,
@@ -729,20 +841,25 @@ export default {
                 n_risco: this.n_risco,
                 grupo_emb: this.grupo_emb,
                 hidroviario: this.hidroviario,
+                onuh: this.onu,
+                embarqueh: this.nome_embarque,
+                classeh: this.classe,
+                riscoh: this.n_risco,
+                embalagemh: this.grupo_emb,
                 aereo: this.aereo,
+                onua: this.onu,
+                nome_embarquea: this.nome_embarque,
+                classea: this.classe,
+                riscoa: this.n_risco,
+                embalagema: this.grupo_emb,
                 regulamentacoes: this.regulamentacoes,
                 outras_info: this.outras_info,
                 loculares: this.loculares,
+                substancias: this.substancias,
                 todas_frases_Perigo:this.todas_frases_Perigo,
                 todas_frases_Precaucao:this.todas_frases_Precaucao,
                 frase_Advertencia:this.frase_Advertencia,
-                
-                substancias: this.substancias,
-                // substancia: this.substancia,
-                // cas: this.cas,
-                // fm: this.fm,
-                // pm: this.pm,
-                // cmm: this.cmm,
+
 
                 idfispqRules: [
                     v => !!v || 'Id é obrigatório'
@@ -763,8 +880,8 @@ export default {
             } catch (err) {
                 console.log(err);
             }
-        },
-        async getFrasesByONU() {
+      },
+      async getFrasesByONU() {
             try {
                 const response = await FispqService.getFrasesONU(this.onu);
                 
@@ -788,14 +905,42 @@ export default {
             } catch (err) {
               console.log(err)
             }
-        },
-        goToList() {
-            this.$router.push({ path: '/dash/fispq' });
-        },
-        reset() {
-            this.$refs.form.reset();
-        },
+      },
 
+      goToList() {
+            this.$router.push({ path: '/dash/fispq' });
+      },
+
+      reset() {
+            this.$refs.form.reset();
+      },
+
+      initialize () {
+          this.substancias = [
+            {
+              substancia: 'Água',
+              cas: 159,
+              fm: 2,
+              pm: 18,
+              cmm: 90,
+            },
+            {
+              substancia: 'Ice cream sandwich',
+              cas: 237,
+              fm: 9.0,
+              pm: 37,
+              cmm: 4.3,
+            },
+            {
+              substancia: 'Eclair',
+              cas: 262,
+              fm: 16.0,
+              pm: 23,
+              cmm: 6.0,
+            },
+          ]
+      },
+        
       editItem (item) {
         this.editedIndex = this.substancias.indexOf(item)
         this.editedItem = Object.assign({}, item)

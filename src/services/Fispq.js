@@ -52,4 +52,9 @@ export default {
         nums = nums.join(',');
         return Api({}).get('/fispq/classificacao/frases?nums=' + nums);
     },
+    getcomposicao(cod_int) {
+        cod_int = cod_int.join(',');
+        return Api({}).get('/fispq/composicao/cod?nums=' + cod_int);
+    },
+
 }

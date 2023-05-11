@@ -20,7 +20,7 @@
                         <div class="text-center" @click="getFrasesByONU()">
                           <!-- <v-btn color="yellow" @click="getFrasesByONU()"> Buscar </v-btn> -->
                           <v-btn green color="yellow" @click="snackbar = true"> Buscar </v-btn>
-                          <v-snackbar v-model="snackbar">
+                          <v-snackbar color="green" v-model="snackbar" >
                           {{ text }}
                           <template v-slot:action="{attrs}">
                             <v-btn color="pink" text v-bind="attrs" @click="snackbar = false">
@@ -162,7 +162,7 @@
                               </v-card-actions>
                             </v-card>
                           </v-dialog>
-                          <v-dialog v-model="dialogDelete" max-width="500px">
+                          <v-dialog v-model="dialogDelete" max-width="600px">
                             <v-card>
                               <v-card-title class="text-h5">Você tem certeza que deseja cancelar este item?</v-card-title>
                               <v-card-actions>
@@ -175,13 +175,14 @@
                           </v-dialog>
                         </v-toolbar>
                       </template>
-                      <template v-slot:[`item.actions`]="{ item }">
-                        
-                        <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/edit-fispq/' + item.id">
+                      <template v-slot:[`item.actions`]="{ item }">                      
+                        <!-- <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/edit-fispq/' + item.id"> -->
+                        <v-btn class="mx-2" fab dark small color="primary"  @click="editItem(item)">  
                           <v-icon dark> edit </v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on">
+                        <!-- <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on"> -->
+                        <v-btn class="mx-2" fab dark small color="red" @click="deleteItem(item)">
                           <v-icon dark> delete </v-icon>
                         </v-btn>
                       </template>
@@ -373,7 +374,7 @@
                     <v-stepper-content step="13">
                       <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
-                        <v-textarea counter label="Destinação Final" :rules="rules500" :value="destinacaofinal"></v-textarea>
+                        <v-textarea counter label="Destinação Final" :value="destinacaofinal"></v-textarea>
                       </v-container>
                       
                         <v-btn @click="e13 = 12" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -391,17 +392,17 @@
                         <v-text-field v-model="n_risco" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="grupo_emb" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
                         <v-textarea v-model="hidroviario" counter label="HIDROVIÁRIO" :rules="rules500"></v-textarea>
-                        <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
-                        <v-text-field v-model="classeh" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
+                        <!-- <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
+                        <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field> -->
+                        <!-- <v-text-field v-model="classeh" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoh" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
-                        <v-text-field v-model="embalagemh" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="embalagemh" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field> -->
                         <v-textarea v-model="aereo" counter label="AÉREO" :rules="rules500"></v-textarea>
-                        <v-text-field v-model="onua" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarquea" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
-                        <v-text-field v-model="classea" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
+                        <!-- <v-text-field v-model="onua" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
+                        <v-text-field v-model="embarquea" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field> -->
+                        <!-- <v-text-field v-model="classea" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoa" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
-                        <v-text-field v-model="embalagema" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="embalagema" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field> -->
                       </v-container>
                       
                       <v-btn @click="e13 = 13" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -518,7 +519,7 @@ export default {
       embalagema:'',
       regulamentacoes:'Decreto Federal nº 2.657, de 3 de julho de 1998. \nNorma ABNT-NBR 14725:2012.\nPortaria n° 229 de 24 de maio de 2011.',
       outras_info:'Centros de Informações Toxicológicas\nBelo Horizonte - Serviço de Toxicologia de Minas Gerais - Hospital João XXIII\nFone: (31) 3239.9224/3239.9223 (Hospital) (31)3239-9308 / 3224-4000 (Tel. CIT) Fax: (31) 3239.9260(CIT).\n\nPorto Alegre Centro de Informações Toxicológicas do Rio Grande do Sul.\nFone: (51) 3217.1751 (Tel. CIT) Fax: (51) 3217.9067 Atendimento: 0800 78 02 00.\nRecife - Centro de Assistência Toxicológica de Pernambuco - Hospital da Restauração - 1º andar.\nFone: (81) 3421.5444 R. 151 (Tel. Hospital) Fax: (81) 3421.5927 / 3423-8263.\nRio de Janeiro- Centro de Controle de Intoxicações do Rio de Janeiro - Hospital Universitário Clementino Fraga Filho.\nFone: (21) 2573.3244/2290-3344 (Tel. CIT) - Fax: (21) 2573-7079 (CIT).\nSalvador- Centro de Informações Anti-Veneno da Bahia - CIAVE - Hospital Geral Roberto Santos.\nFone: (71) 387.3414/387-4343 e 0800 284 43 43 Fax: (71) 387.3414.\nSão Paul- Centro de Controle de Intoxicações de São Paulo - Hospital Municipal Dr. Artur Ribeiro de Saboya.\nFone/Fax: (11) 5012/2399 (Tel. CIT) (11) 5012-5311 (atendimento médico) Atendimento: 0800 771 37 33.\nLegendas e abreviaturas\nCAS - Chemical Abstracts Service\nONU – Organização das Nações Unidas\nACGIH - American Conference of Governmental Industrial Hygienists\nTLV - Threshold Limit Values (limites de exposição)\nTWA – Time-Weighted Average (média ponderada pelo tempo)\nSTEL – Short-Term Exposure Limit (exposição de curta duração)\nDL50 – Dose letal 50%\nCL50 – Concentração letal 50%\nCE50 – Concentração Efetiva\nO não cumprimento das informações acima descritas, isenta o fabricante de responsabilidade pelo uso indevido do produto. As indicações baseiam-se no nível atual de nossos conhecimentos e servem para a caracterização do produto no que se refere às medidas de segurança a tomar. Estas indicações não implicam em qualquer garantia das propriedades do produto acima descrito.\nPermitido fazer número ilimitado de cópias físicas, somente para uso interno.',
-      loculares:'',
+      loculares:'Não disponível',
       todas_frases_Perigo:[],
       todas_frases_Precaucao:[],
       frase_Advertencia:"",
@@ -551,49 +552,45 @@ export default {
 
       pictogramas_disponiveis: [
       {
-          name: 'Bomba explodindo',
-          imagem: 'corrosao.png'
+          name: 'explosivo',
+          imagem: 'explosivo.jpg'
         },
         {
-          name: 'chama',
-          imagem: 'corrosao.png'
+          name: 'ambiente',
+          imagem: 'ambiente.jpg'
         },
         {
-          name: 'Chama sobre circulo',
-          imagem: 'corrosao.png'
+          name: 'corrosivo',
+          imagem: 'corrosivo.jpg'
         },
         {
-          name: 'Corrosão',
-          imagem: 'corrosao.png'
+          name: 'gas_comprimido',
+          imagem: 'gas_comprimido.jpg'
         },
         {
-          name: 'Bomba explodindo',
-          imagem: 'corrosao.png'
+          name: 'inflamavel',
+          imagem: 'inflamavel.jpg'
         },
         {
-          name: 'chama',
-          imagem: 'corrosao.png'
+          name: 'exclamacao',
+          imagem: 'exclamacao.jpg'
         },
         {
-          name: 'Chama sobre circulo',
-          imagem: 'corrosao.png'
+          name: 'oxidante',
+          imagem: 'oxidante.jpg'
         },
         {
-          name: 'Corrosão',
-          imagem: 'corrosao.png'
+          name: 'perigo_a_saude',
+          imagem: 'perigo_a_saude.jpg'
         },
         {
-          name: 'Bomba explodindo',
-          imagem: 'corrosao.png'
-        },
-        {
-          name: 'chama',
-          imagem: 'corrosao.png'
+          name: 'toxico',
+          imagem: 'toxico.jpg'
         },
       ],
 
 
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       
       classificacao: [],
 
@@ -670,10 +667,10 @@ export default {
 
 
 
-    // created () {
+    created () {
 
-    //   this.initialize()
-    // },
+      this.initialize()
+    },
 
   mounted() {
     this.getFrasesClassificacao();
@@ -720,6 +717,7 @@ export default {
               this.todas_frases_Precaucao = response.data['frases_precaucao'].join('\n');
               this.frase_Advertencia = response.data['frases_advertencia'];
               this.pictogramas = response.data['pictogramas'];
+              this.todas_frases_classificacao = response.data['frases_classificacao'].join('\n')
 
               console.log(response);
 
@@ -814,7 +812,7 @@ export default {
                   todas_frases_Precaucao:this.todas_frases_Precaucao,
                   frase_Advertencia:this.frase_Advertencia,
                   pictogramas:this.pictogramas.join(","),
-
+                  todas_frases_classificacao: this.todas_frases_classificacao 
               } 
               await FispqService.add(data);
            
@@ -878,31 +876,31 @@ export default {
         },
     
     // methods: {
-      // initialize () {
-      //   this.substancias = [
-      //     {
-      //       substancia: 'Água',
-      //       cas: 159,
-      //       fm: 2,
-      //       pm: 18,
-      //       cmm: 90,
-      //     },
-      //     {
-      //       substancia: 'Ice cream sandwich',
-      //       cas: 237,
-      //       fm: 9.0,
-      //       pm: 37,
-      //       cmm: 4.3,
-      //     },
-      //     {
-      //       substancia: 'Eclair',
-      //       cas: 262,
-      //       fm: 16.0,
-      //       pm: 23,
-      //       cmm: 6.0,
-      //     },
-      //   ]
-      // },
+      initialize () {
+        this.substancias = [
+          {
+            substancia: 'Água',
+            cas: 159,
+            fm: 2,
+            pm: 18,
+            cmm: 90,
+          },
+          {
+            substancia: 'Ice cream sandwich',
+            cas: 237,
+            fm: 9.0,
+            pm: 37,
+            cmm: 4.3,
+          },
+          {
+            substancia: 'Eclair',
+            cas: 262,
+            fm: 16.0,
+            pm: 23,
+            cmm: 6.0,
+          },
+        ]
+      },
 
       editItem (item) {
         this.editedIndex = this.substancias.indexOf(item)
