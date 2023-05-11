@@ -12,7 +12,7 @@
         </div>
 
         <div style="margin-top: 25px ">
-            <v-data-table :headers="headers" :items="fispqs" :items-per-page="10" class=" elevation-1 "
+            <v-data-table :headers="headers" :items="fispqs" :items-per-page="15" class=" elevation-1 "
                 no-data-text="Não encontramos FISPQ cadastradas.">
                
                 <template v-slot:[`item.actions`]="{ item }">
@@ -68,6 +68,7 @@ export default {
         return {
             headers: [
                 { text: 'ID', align: 'start', value: 'idFispq', class:'blue lighten-3 subtitle-1 font-weight-black'},
+                { text: 'COD', align: 'start', value: 'cod_int', class:'blue lighten-3 subtitle-1 font-weight-black'},
                 { text: 'PRODUTO', align: 'start', value: 'produto', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'ONU', align: 'start', value: 'onu', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'nome_embarque', class:'blue lighten-3 subtitle-1 font-weight-black' },
@@ -92,11 +93,12 @@ export default {
                 this.fispqs = response.data.fispqs_list.map(fispq => {
                     return {
                         idFispq: fispq.idFispq,
+                        cod_int: fispq.cod_int,
                         produto: fispq.produto,
                         onu: fispq.onu,
                         nome_embarque: fispq.nome_embarque,
-                        created_at: new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }),
-                        update_at: fispq.update_at,
+                        created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
+                        update_at: fispq.update_at ? new Date(fispq.update_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
                     }
                 });
             } catch (err) {
