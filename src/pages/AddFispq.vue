@@ -876,31 +876,31 @@ export default {
         },
     
     // methods: {
-      initialize () {
-        this.substancias = [
-          {
-            substancia: 'Água',
-            cas: 159,
-            fm: 2,
-            pm: 18,
-            cmm: 90,
-          },
-          {
-            substancia: 'Ice cream sandwich',
-            cas: 237,
-            fm: 9.0,
-            pm: 37,
-            cmm: 4.3,
-          },
-          {
-            substancia: 'Eclair',
-            cas: 262,
-            fm: 16.0,
-            pm: 23,
-            cmm: 6.0,
-          },
-        ]
-      },
+      // initialize () {
+      //   this.substancias = [
+      //     {
+      //       substancia: 'Água',
+      //       cas: 159,
+      //       fm: 2,
+      //       pm: 18,
+      //       cmm: 90,
+      //     },
+      //     {
+      //       substancia: 'Ice cream sandwich',
+      //       cas: 237,
+      //       fm: 9.0,
+      //       pm: 37,
+      //       cmm: 4.3,
+      //     },
+      //     {
+      //       substancia: 'Eclair',
+      //       cas: 262,
+      //       fm: 16.0,
+      //       pm: 23,
+      //       cmm: 6.0,
+      //     },
+      //   ]
+      // },
 
       editItem (item) {
         this.editedIndex = this.substancias.indexOf(item)
