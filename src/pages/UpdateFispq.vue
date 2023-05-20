@@ -63,6 +63,19 @@
                     </div>
                     <v-textarea  v-model="todas_frases_Perigo" counter label="Frase de Perigo"></v-textarea>
                     <v-textarea v-model="todas_frases_Precaucao" counter label="Frase de Precaução"></v-textarea>
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 15px">
+                      <v-checkbox
+                        v-for="pictograma in pictogramas_disponiveis"
+                        :key="pictograma.name"
+                        v-model="pictogramas"
+                        :value="pictograma.name"
+                        style="width: 9.5%; border-radius: 10px; border: 1.5px solid #CCC;"
+                      >
+                        <template slot="label">
+                          <img :src="require(`@/assets/images/pictogramas/${pictograma.imagem}`)" :alt="pictograma.name" style="width: 95%;" />
+                        </template>
+                      </v-checkbox>
+                    </div>
                     <v-text-field v-model="frase_Advertencia" name="input-5-1" rules500="rules" label="Frase de Advertência" outlined required></v-text-field> 
                     <v-btn @click="e13 = 1" style="background: yellow; margin: 10px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 3" style="margin: 10px"> Continue </v-btn>
@@ -150,12 +163,13 @@
                         </v-toolbar>
                       </template>
                       <template v-slot:[`item.actions`]="{ item }">
-                        
-                        <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/edit-fispq/' + item.id">
+                        <v-btn class="mx-2" fab dark small color="primary"  @click="editItem(item)">  
+                        <!-- <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/edit-fispq/' + item.id"> -->
                           <v-icon dark> edit </v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on">
+                        <!-- <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on"> -->
+                        <v-btn class="mx-2" fab dark small color="red" @click="deleteItem(item)">
                           <v-icon dark> delete </v-icon>
                         </v-btn>
                       </template>
@@ -526,6 +540,44 @@ export default {
             dialog: false,
             dialogDelete: false,
 
+            pictogramas_disponiveis: [
+            {
+                name: 'explosivo',
+                imagem: 'explosivo.jpg'
+              },
+              {
+                name: 'ambiente',
+                imagem: 'ambiente.jpg'
+              },
+              {
+                name: 'corrosivo',
+                imagem: 'corrosivo.jpg'
+              },
+              {
+                name: 'gas_comprimido',
+                imagem: 'gas_comprimido.jpg'
+              },
+              {
+                name: 'inflamavel',
+                imagem: 'inflamavel.jpg'
+              },
+              {
+                name: 'exclamacao',
+                imagem: 'exclamacao.jpg'
+              },
+              {
+                name: 'oxidante',
+                imagem: 'oxidante.jpg'
+              },
+              {
+                name: 'perigo_a_saude',
+                imagem: 'perigo_a_saude.jpg'
+              },
+              {
+                name: 'toxico',
+                imagem: 'toxico.jpg'
+              },
+            ],
             classificacao: [],
 
             selectedClassificacao: [],
@@ -915,31 +967,31 @@ export default {
             this.$refs.form.reset();
       },
 
-      initialize () {
-          this.substancias = [
-            {
-              substancia: 'Água',
-              cas: 159,
-              fm: 2,
-              pm: 18,
-              cmm: 90,
-            },
-            {
-              substancia: 'Ice cream sandwich',
-              cas: 237,
-              fm: 9.0,
-              pm: 37,
-              cmm: 4.3,
-            },
-            {
-              substancia: 'Eclair',
-              cas: 262,
-              fm: 16.0,
-              pm: 23,
-              cmm: 6.0,
-            },
-          ]
-      },
+      // initialize () {
+      //     this.substancias = [
+      //       {
+      //         substancia: 'Água',
+      //         cas: 159,
+      //         fm: 2,
+      //         pm: 18,
+      //         cmm: 90,
+      //       },
+      //       {
+      //         substancia: 'Ice cream sandwich',
+      //         cas: 237,
+      //         fm: 9.0,
+      //         pm: 37,
+      //         cmm: 4.3,
+      //       },
+      //       {
+      //         substancia: 'Eclair',
+      //         cas: 262,
+      //         fm: 16.0,
+      //         pm: 23,
+      //         cmm: 6.0,
+      //       },
+      //     ]
+      // },
         
       editItem (item) {
         this.editedIndex = this.substancias.indexOf(item)
