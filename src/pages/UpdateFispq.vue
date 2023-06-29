@@ -801,6 +801,8 @@ export default {
                 this.todas_frases_Perigo= response.data.fispq.todas_frases_Perigo;
                 this.todas_frases_Precaucao= response.data.fispq.todas_frases_Precaucao;
                 this.frase_Advertencia = response.data.fispq.frase_Advertencia;
+                this.pictogramas = response.data.fispq.pictogramas
+                this.selectedClassificacao = response.data.fispq.ids_frases_perigo
 
             } catch (err) {
                 this.fispqs = [];
@@ -821,8 +823,8 @@ export default {
       async updateFispq() {
             try {
                 const data = {
-                idfispq: this.idfispq,
-                produto: this.produto,
+                // idfispq: this.idfispq,
+                // produto: this.produto,
                 cod_int: this.cod_int,
                 uso: this.uso,
                 inalacao: this.inalacao,
@@ -911,16 +913,18 @@ export default {
                 todas_frases_Perigo:this.todas_frases_Perigo,
                 todas_frases_Precaucao:this.todas_frases_Precaucao,
                 frase_Advertencia:this.frase_Advertencia,
-
-
-                idfispqRules: [
-                    v => !!v || 'Id é obrigatório'
-                ],
-                produtoRules: [
-                    v => !!v || 'Produto é obrigatório'
-                ],
-
+                ids_frases_perigo: this.selectedClassificacao.join(","),
+                pictogramas:this.pictogramas.join(","),
                 }
+
+                // idfispqRules: [
+                //     v => !!v || 'Id é obrigatório'
+                // ],
+                // produtoRules: [
+                //     v => !!v || 'Produto é obrigatório'
+                // ],
+
+                
 
                 await FispqService.update(this.idFispq, data);
                 this.finish = true;

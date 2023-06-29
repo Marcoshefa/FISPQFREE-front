@@ -812,7 +812,8 @@ export default {
                   todas_frases_Precaucao:this.todas_frases_Precaucao,
                   frase_Advertencia:this.frase_Advertencia,
                   pictogramas:this.pictogramas.join(","),
-                  todas_frases_classificacao: this.todas_frases_classificacao 
+                  todas_frases_classificacao: this.todas_frases_classificacao, 
+                  ids_frases_perigo: this.selectedClassificacao.join(",")
               } 
               await FispqService.add(data);
            
