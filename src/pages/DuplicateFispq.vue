@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Atualizando Fispq</h1>
+        <h1>Duplicando a Fispq</h1>
 
         <v-alert v-if="finish" shaped outlined type="success" style=" margin: 20px">
             Fispq atualizada com sucesso! Você será redirecionada para a pagina de principal.
@@ -17,8 +17,8 @@
               <v-stepper-step editable step="1" complete> 1-IDENTIFICAÇÃO </v-stepper-step>
                   <v-stepper-content step="1">
                     <div style="width: 100%; height: 10px;"></div>
-                      <v-text-field v-model="cod_int" :rules="rules20" name="input-5-1" disabled counter="20" label="Cód. interno" outlined required></v-text-field>
-                      <v-text-field v-model="produto" name="input-5-1" disabled :rules="rules90" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
+                      <v-text-field v-model="cod_int" :rules="rules20" name="input-5-1" counter="20" label="Cód. interno" outlined required></v-text-field>
+                      <v-text-field v-model="produto" name="input-5-1" :rules="rules90" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
                       <v-text-field v-model="uso" name="input-5-1" :rules="rules90" counter="90" label="Principais usos recomendados para a substância ou mistura:" outlined required></v-text-field>
                     
                       <v-btn color="primary" @click="e13 = 2"> Continue </v-btn>
@@ -254,7 +254,7 @@
                     <div style="width: 100%; height: 10px;"></div>
                     <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
                       <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor e limite de cor" outlined required></v-text-field>
-                      <v-text-field v-model="ph" name="input-5-1" :rules="rules45" labell="pH" outlined required></v-text-field>
+                      <v-text-field v-model="ph" name="input-5-1" :rules="rules45" label="pH" outlined required></v-text-field>
                       <v-text-field v-model="fusao" name="input-5-1" :rules="rules45" label="Ponto de fusão/ponto de congelamento" outlined required></v-text-field>
                       <v-text-field v-model="ebulicao" name="input-5-1" :rules="rules45" label="Ponto de ebulição" outlined required></v-text-field>
                       <v-text-field v-model="fulgor" name="input-5-1" :rules="rules45" label="Ponto de fulgor" outlined required></v-text-field>
@@ -408,10 +408,10 @@
                       <div style="width: 100%; height: 10px;"></div>
                       <v-container fluid>
                         <v-textarea v-model="regulamentacoes" counter label="Regulamentações" :rules="rules500"></v-textarea>
-                      </v-container>
+                      </v-container> -->
                       
                       
-                        <v-btn @click="e13 = 14" style="background: yellow; margin: 15px">Voltar</v-btn>
+                        <!-- <v-btn @click="e13 = 14" style="background: yellow; margin: 15px">Voltar</v-btn>
                         <v-btn color="primary" @click="e13 = 16"> Continue </v-btn>
                     </v-stepper-content>
 
@@ -423,17 +423,19 @@
                       </v-container>
                       
                         <v-btn @click="e13 = 15" style="background: yellow; margin: 15px">Voltar</v-btn>
-                        <v-btn color="primary" @click="e13 = 16"> Continue </v-btn>
+                       
                     </v-stepper-content> -->
 
                   </v-stepper>
                   <!-- <v-btn :disabled="!valid" color="success" class="mr-4" @click="addFispq">
                     Cadastrar
                   </v-btn> -->
-        
+                  <v-alert v-if="alerta !== ''" border="top" min-width="300px" class="text-center" color="red lighten-2" dark>
+                    {{ alerta }}
+                  </v-alert>
 
-            <v-btn :disabled="!valid" color="success" class="mr-4" @click="updateFispq">
-                Atualizar
+            <v-btn :disabled="!valid" color="success" class="mr-4" x-large @click="duplicateFispq">
+                Cadastrar
             </v-btn>
 
             <!-- <v-btn color="error" class="mr-4" @click="reset">
@@ -448,6 +450,7 @@ import FispqService from "../services/Fispq";
 export default {
     data() {
         return {
+            alerta: "",
             valid: false,
             finish: false,
             idfispq: '',
@@ -544,7 +547,7 @@ export default {
             pictogramas: [],
             substancias: [],
             particula:'',
-            versao:'',
+            versao:1,
 
             e13: 1,
             dialog: false,
@@ -816,9 +819,8 @@ export default {
                 this.frase_Advertencia = response.data.fispq.frase_Advertencia;
                 this.pictogramas = response.data.fispq.pictogramas;
                 this.selectedClassificacao = response.data.fispq.ids_frases_perigo;
-                this.todas_frases_classificacao = response.data.fispq.todas_frases_classificacao;
-                this.versao = response.data.fispq.versao;
-                this.particula = response.data.fispq.particula
+                this.particula = response.data.fispq.particula;
+                this.versao = response.data.fispq.versao
 
             } catch (err) {
                 this.fispqs = [];
@@ -836,116 +838,98 @@ export default {
         //   },
         
 
-      async updateFispq() {
-            try {
-                const data = {
-                // idfispq: this.idfispq,
-                // produto: this.produto,
-                cod_int: this.cod_int,
-                uso: this.uso,
-                inalacao: this.inalacao,
-                cont_olhos: this.cont_olhos,
-                cont_pele: this.cont_pele,
-                ingestao: this.ingestao,
-                sintomas: this.sintomas,
-                medico: this.medico,
-                extincao: this.extincao,
-                perigo_esp: this.perigo_esp,
-                medidas_protecao: this.medidas_protecao,
-                servico_emergencia: this.servico_emergencia,
-                servico_emergencia2: this.servico_emergencia2,
-                precaucao_ambiente: this.precaucao_ambiente,
-                metodos_materiais: this.metodos_materiais,
-                manuseio_seguro: this.manuseio_seguro,
-                medidas_higiene: this.medidas_higiene,
-                condicoes_armazenamento: this.condicoes_armazenamento,
-                limitexposicao: this.limitexposicao,
-                medcontroleng: this.medcontroleng,
-                polhos: this.polhos,
-                ppele: this.ppele,
-                prespiratoria: this.prespiratoria,
-                ptermicos: this.ptermicos,
-                aspecto: this.aspecto,
-                odor: this.odor,
-                ph: this.ph,
-                fusao: this.fusao,
-                ebulicao: this.ebulicao,
-                fulgor: this.fulgor,
-                evaporacao: this.evaporacao,
-                inflamabilidade: this.inflamabilidade,
-                explosividade: this.explosividade,
-                pvapor: this.pvapor,
-                dvapor: this.dvapor,
-                drelativa: this.drelativa,
-                solubilidade: this.solubilidade,
-                particao: this.particao,
-                autoignicao: this.autoignicao,
-                decomposicao: this.decomposicao,
-                viscosidade: this.viscosidade,
-                informacoes: this.informacoes,
-                reatividade: this.reatividade,
-                estabilidadeq: this.estabilidadeq,
-                rperigosas: this.rperigosas,
-                caseremevitadas: this.caseremevitadas,
-                incompativeis: this.incompativeis,
-                pdecomposicao: this.pdecomposicao,
-                toxicidadea: this.toxicidadea,
-                cpele: this.cpele,
-                srespiratoria: this.srespiratoria,
-                mutagenicidade: this.mutagenicidade,
-                carcinogenicidade: this.carcinogenicidade,
-                reproducao: this.reproducao,
-                exposicaou: this.exposicaou,
-                exposicaor: this.exposicaor,
-                aspiracao: this.aspiracao,
-                ecotoxidade: this.ecotoxidade,
-                degradabilidade: this.degradabilidade,
-                bioacumulativo: this.bioacumulativo,
-                mobilidade: this.mobilidade,
-                outros_efeitos: this.outros_efeitos,
-                destinacaofinal: this.destinacaofinal,
-                terrestre: this.terrestre,
-                onu: this.onu,
-                nome_embarque: this.nome_embarque,
-                classe: this.classe,
-                n_risco: this.n_risco,
-                grupo_emb: this.grupo_emb,
-                hidroviario: this.hidroviario,
-                onuh: this.onu,
-                embarqueh: this.nome_embarque,
-                classeh: this.classe,
-                riscoh: this.n_risco,
-                embalagemh: this.grupo_emb,
-                aereo: this.aereo,
-                onua: this.onu,
-                nome_embarquea: this.nome_embarque,
-                classea: this.classe,
-                riscoa: this.n_risco,
-                embalagema: this.grupo_emb,
-                regulamentacoes: this.regulamentacoes,
-                outras_info: this.outras_info,
-                loculares: this.loculares,
-                substancias: this.substancias,
-                todas_frases_Perigo:this.todas_frases_Perigo,
-                todas_frases_Precaucao:this.todas_frases_Precaucao,
-                frase_Advertencia:this.frase_Advertencia,
-                ids_frases_perigo: this.selectedClassificacao.join(","),
-                pictogramas:this.pictogramas.join(","),
-                todas_frases_classificacao: this.todas_frases_classificacao, 
-                versao: this.versao,
-                particula: this.particula
-                }
-
-                // idfispqRules: [
-                //     v => !!v || 'Id é obrigatório'
-                // ],
-                // produtoRules: [
-                //     v => !!v || 'Produto é obrigatório'
-                // ],
-
-                
-
-                await FispqService.update(this.idFispq, data);
+      async duplicateFispq() {
+          try {
+              const duplic = {
+//                produto = nome do campo criado para receber informações do front
+//                this = acrescenta a informação no metodo data
+//                produto = nome do campo do backend
+                  produto: this.produto,
+                  cod_int: this.cod_int,
+                  uso: this.uso,
+                  inalacao: this.inalacao,
+                  cont_olhos: this.cont_olhos,
+                  cont_pele: this.cont_pele,
+                  ingestao: this.ingestao,
+                  sintomas: this.sintomas,
+                  medico: this.medico,
+                  extincao: this.extincao,
+                  perigo_esp: this.perigo_esp,
+                  medidas_protecao: this.medidas_protecao,
+                  servico_emergencia: this.servico_emergencia,
+                  servico_emergencia2: this.servico_emergencia2,
+                  precaucao_ambiente: this.precaucao_ambiente,
+                  metodos_materiais: this.metodos_materiais,
+                  manuseio_seguro: this.manuseio_seguro,
+                  medidas_higiene: this.medidas_higiene,
+                  condicoes_armazenamento: this.condicoes_armazenamento,
+                  limitexposicao: this.limitexposicao,
+                  medcontroleng: this.medcontroleng,
+                  polhos: this.polhos,
+                  ppele: this.ppele,
+                  prespiratoria: this.prespiratoria,
+                  ptermicos: this.ptermicos,
+                  aspecto: this.aspecto,
+                  odor: this.odor,
+                  ph: this.ph,
+                  fusao: this.fusao,
+                  ebulicao: this.ebulicao,
+                  fulgor: this.fulgor,
+                  evaporacao: this.evaporacao,
+                  inflamabilidade: this.inflamabilidade,
+                  explosividade: this.explosividade,
+                  pvapor: this.pvapor,
+                  dvapor: this.dvapor,
+                  drelativa: this.drelativa,
+                  solubilidade: this.solubilidade,
+                  particao: this.particao,
+                  autoignicao: this.autoignicao,
+                  decomposicao: this.decomposicao,
+                  viscosidade: this.viscosidade,
+                  informacoes: this.informacoes,
+                  reatividade: this.reatividade,
+                  estabilidadeq: this.estabilidadeq,
+                  rperigosas: this.rperigosas,
+                  caseremevitadas: this.caseremevitadas,
+                  incompativeis: this.incompativeis,
+                  pdecomposicao: this.pdecomposicao,
+                  toxicidadea: this.toxicidadea,
+                  cpele: this.cpele,
+                  srespiratoria: this.srespiratoria,
+                  mutagenicidade: this.mutagenicidade,
+                  carcinogenicidade: this.carcinogenicidade,
+                  reproducao: this.reproducao,
+                  exposicaou: this.exposicaou,
+                  exposicaor: this.exposicaor,
+                  aspiracao: this.aspiracao,
+                  ecotoxidade: this.ecotoxidade,
+                  degradabilidade: this.degradabilidade,
+                  bioacumulativo: this.bioacumulativo,
+                  mobilidade: this.mobilidade,
+                  outros_efeitos: this.outros_efeitos,
+                  destinacaofinal: this.destinacaofinal,
+                  terrestre: this.terrestre,
+                  onu: this.onu,
+                  nome_embarque: this.nome_embarque,
+                  classe: this.classe,
+                  n_risco: this.n_risco,
+                  grupo_emb: this.grupo_emb,
+                  hidroviario: this.hidroviario,
+                  aereo: this.aereo,
+                  regulamentacoes: this.regulamentacoes,
+                  outras_info: this.outras_info,
+                  loculares: this.loculares,
+                  substancias: this.substancias,
+                  todas_frases_Perigo:this.todas_frases_Perigo,
+                  todas_frases_Precaucao:this.todas_frases_Precaucao,
+                  frase_Advertencia:this.frase_Advertencia,
+                  pictogramas:this.pictogramas.join(","),
+                  todas_frases_classificacao: this.todas_frases_classificacao, 
+                  ids_frases_perigo: this.selectedClassificacao.join(","),
+                  particula: this.particula,
+                  versao: 1
+              } 
+              await FispqService.duplicate(duplic);
                 this.finish = true;
                 this.reset();
                 setTimeout(() => {
@@ -953,7 +937,9 @@ export default {
                 }, 1000);
 
             } catch (err) {
-                console.log(err);
+                // console.log(err);
+                const mensagemErro = err && err.response && err.response.data ? err.response.data : "Erro ao logar!";
+                this.alerta = mensagemErro;
             }
       },
       async getFrasesByONU() {

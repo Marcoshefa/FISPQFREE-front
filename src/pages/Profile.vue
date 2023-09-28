@@ -11,16 +11,17 @@
         </v-snackbar>
             
         <div>
-            <h1>Profile</h1>
+            <h1>Meu Perfil</h1>
         </div>
 
         <div class="profile">
             <div class="profile_content d-flex align-start flex-wrap">
                 <p><b>Nome:</b> {{ user_infos.name }}</p>
                 <p><b>E-mail:</b> {{ user_infos.email }}</p>
-                <p><b>Celular:</b> {{ user_infos.celular }}</p>
+                <!-- <p><b>Celular:</b> {{ user_infos.celular }}</p> -->
                 <!-- <p><b>Grupo de Acesso:</b> {{ user_infos.permission }}</p> -->
-                <p><b>Data de Criação:</b> {{ new Date(user_infos.created_at).toLocaleDateString() }}</p>
+                <p><b>Data de Criação:</b> {{ user_infos.created_at ? new Date(user_infos.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,}}</p>
+                <!-- created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null, -->
             </div>
 
             <hr />

@@ -12,6 +12,10 @@ export default {
         return Api({}).post('/fispq/', data)
     },
 
+    duplicate (duplic) {
+        return Api({}).post('/fispq/duplicate/', duplic)
+    },
+
     addComp (data) {
         return Api({}).post('/fispq/comp/', data)
     },
@@ -55,6 +59,12 @@ export default {
     getcomposicao(cod_int) {
         cod_int = cod_int.join(',');
         return Api({}).get('/fispq/composicao/cod?nums=' + cod_int);
+    },
+    gerarPDF(cod_int) {
+        const config = {
+            responseType: 'blob'
+        }
+        return Api({}).get('/fispq/gerar_pdf/' + cod_int, config); 
     },
 
 }

@@ -2,6 +2,14 @@
     <div>
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <h1>FISPQ</h1>
+            <v-spacer></v-spacer>
+            <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Digite o código da FISPQ"
+                single-line
+                hide-details
+            ></v-text-field>
 
             <v-btn color="green" class="ma-2 white--text" @click="goToAdd()">
                 <v-icon left dark>
@@ -12,7 +20,7 @@
         </div>
 
         <div style="margin-top: 25px ">
-            <v-data-table :headers="headers" :items="fispqs" :items-per-page="15" class=" elevation-1 "
+            <v-data-table :headers="headers" :items="fispqs" :items-per-page="15" :search="search" class=" elevation-1 "
                 no-data-text="Não encontramos FISPQ cadastradas.">
                
                 <template v-slot:[`item.actions`]="{ item }">
@@ -22,6 +30,17 @@
                         </v-icon>
                     </v-btn>
 
+                    <v-btn class="mx-2" fab dark small color="primary" :to="'/dash/duplicate/' + item.idFispq">
+                        <v-icon dark>
+                            file_copy
+                        </v-icon>
+                    </v-btn>
+
+                    <v-btn class="mx-2" fab dark small color="primary" @click="downloadPDF(item.idFispq)">
+                        <v-icon dark>
+                            picture_as_pdf
+                        </v-icon>
+                    </v-btn>
                     
                         <!-- <template v-slot:activator="{ on, attrs }"> -->
                             <!-- <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on"> -->
@@ -66,12 +85,13 @@ import FispqService from "../services/Fispq";
 export default {
     data() {
         return {
+            search: '',
             headers: [
                 { text: 'ID', align: 'start', value: 'idFispq', class:'blue lighten-3 subtitle-1 font-weight-black'},
                 { text: 'COD', align: 'start', value: 'cod_int', class:'blue lighten-3 subtitle-1 font-weight-black'},
                 { text: 'PRODUTO', align: 'start', value: 'produto', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'ONU', align: 'start', value: 'onu', class:'blue lighten-3 subtitle-1 font-weight-black' },
-                { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'nome_embarque', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                // { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'nome_embarque', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'DATA DE CRIAÇÃO', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'DATA DE ATUALIZAÇÃO', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'AÇÕES', align: 'start', value: 'actions', class:'blue lighten-3 subtitle-1 font-weight-black' }
@@ -96,9 +116,10 @@ export default {
                         cod_int: fispq.cod_int,
                         produto: fispq.produto,
                         onu: fispq.onu,
-                        nome_embarque: fispq.nome_embarque,
-                        created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
-                        update_at: fispq.update_at ? new Date(fispq.update_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
+                        // nome_embarque: fispq.nome_embarque,
+                        // created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
+                        created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
+                        update_at: fispq.update_at ? new Date(fispq.update_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
                     }
                 });
             } catch (err) {
@@ -115,6 +136,22 @@ export default {
                 console.log(err)
             }
         },
+        async downloadPDF(id_Fispq) {
+            try {
+                const result = await FispqService.gerarPDF(id_Fispq);
+
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(new Blob([result.data]));
+                link.setAttribute('download', `fispq_${id_Fispq}.pdf`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+            } catch (err) {
+                alert('Tivemos um erro ao gerar o PDF! Contate o administrador');
+            }
+        },
+
 
         goToAdd() {
             this.$router.push({path: '/dash/add-fispq'});

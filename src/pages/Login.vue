@@ -16,7 +16,7 @@
           <input type="password" placeholder="Digite sua Senha" v-model="password" />
         </div>
 
-        <v-alert v-if="alerta !== ''" border="top" color="red lighten-2" dark>
+        <v-alert v-if="alerta !== ''" border="top" min-width="300px" class="text-center" color="red lighten-2" dark>
           {{ alerta }}
         </v-alert>
 
@@ -31,6 +31,8 @@ import AuthService from "../services/Auth";
 
 export default {
   name: "Login",
+
+
 
   data() {
     return {
@@ -57,7 +59,7 @@ export default {
         localStorage.setItem("token-fispq", resposta.data.token);
         localStorage.setItem("fispq-free_id", resposta.data.user_id);
         
-        this.$router.push({path: '/dash'});
+        this.$router.push({path: '/dash/fispq'});
 
       } catch (err) {
         const mensagemErro = err && err.response && err.response.data ? err.response.data : "Erro ao logar!";

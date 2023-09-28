@@ -75,7 +75,7 @@ export default {
                 { text: 'ID', align: 'start', value: 'id', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'Nome', align: 'start', value: 'name', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'e-mail', align: 'start', value: 'email', class:'blue lighten-3 subtitle-1 font-weight-black' },
-                { text: 'Celular', align: 'start', value: 'celular', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                // { text: 'Celular', align: 'start', value: 'celular', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'Data de criação', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'Data da atualização', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'Nível de permissão', align: 'start', value: 'permission_id', class:'blue lighten-3 subtitle-1 font-weight-black' },
@@ -112,9 +112,9 @@ export default {
                         id: user.id,
                         name: user.name,
                         email: user.email,
-                        celular: user.celular,
-                        created_at: user.created_at ? new Date(user.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
-                        update_at: user.update_at ? new Date(user.update_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
+                        // celular: user.celular,
+                        created_at: user.created_at ? new Date(user.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
+                        update_at: user.update_at ? new Date(user.update_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
                         permission_id: user.permission_id,
                     }
                 });

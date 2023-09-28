@@ -46,7 +46,11 @@ const router = new Router({
         {          
           path: 'profile',
           component: () => import('@/pages/Profile')
-        }
+        },
+        {          
+          path: 'duplicate/:id',
+          component: () => import('@/pages/DuplicateFispq')
+        },
       
       ]
     }
