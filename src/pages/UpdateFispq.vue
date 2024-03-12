@@ -132,7 +132,7 @@
                                     </v-col>
 
                                     <v-col cols="12" sm="6" md="4">
-                                      <v-text-field v-model="editedItem.cmm" label="Concentração (M/M)"
+                                      <v-text-field v-model="editedItem.cmm" label="Concentração %"
                                       ></v-text-field>
                                     </v-col>
 
@@ -193,12 +193,16 @@
                   <v-stepper-step editable step="4" complete> 4 - MEDIDAS DE PRIMEIROS SOCORROS </v-stepper-step>
                   <v-stepper-content step="4">
                     <div style="width: 100%; height: 10px;"></div>
-                    <v-text-field v-model="inalacao" name="input-5-1" :rules="rules250" label="EM CASO DE INALAÇÃO:" outlined required></v-text-field>
+                      <v-textarea v-model="inalacao" counter label="EM CASO DE INALAÇÃO:"></v-textarea>
+                      <v-textarea v-model="cont_pele" counter label="EM CASO DE CONTATO COM A PELE:"></v-textarea>
+                      <v-textarea v-model="cont_olhos" counter label="EM CASO DE CONTATO COM OS OLHOS:"></v-textarea>
+                      <v-textarea v-model="ingestao" counter label="EM CASO DE INGESTÃO:"></v-textarea>
+                      <!-- <v-text-field v-model="inalacao" name="input-5-1" :rules="rules250" label="EM CASO DE INALAÇÃO:" outlined required></v-text-field>
                       <v-text-field v-model="cont_pele" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM A PELE:" outlined required></v-text-field>
                       <v-text-field v-model="cont_olhos" name="input-5-1" :rules="rules250" label="EM CASO DE CONTATO COM OS OLHOS:" outlined required></v-text-field>
-                      <v-text-field v-model="ingestao" name="input-5-1" :rules="rules250" label="EM CASO DE INGESTÃO:" outlined required></v-text-field>
+                      <v-text-field v-model="ingestao" name="input-5-1" :rules="rules250" label="EM CASO DE INGESTÃO:" outlined required></v-text-field> -->
                       <v-text-field v-model="sintomas" name="input-5-1" :rules="rules250" label="Sintomas e efitos mais importantes, agudos ou tardios:" outlined required></v-text-field>
-                      <v-text-field v-model="medico" name="input-5-1" :rules="rules250" label="Notas para o médico" outlined required></v-text-field>
+                      <v-text-field v-model="medico" name="input-5-1" :rules="rules250" label="Indicação de atenção médica imediata e tratamentos especiais requeridos, se necessário." outlined required></v-text-field>
                       <v-btn @click="e13 = 3" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 5"> Continue </v-btn>
                   </v-stepper-content>
@@ -206,9 +210,12 @@
                   <v-stepper-step editable step="5" complete> 5 - MEDIDAS DE COMBATE A INCÊNDIO </v-stepper-step>
                   <v-stepper-content step="5">
                     <div style="width: 100%; height: 10px;"></div>
-                    <v-text-field v-model="extincao" name="input-5-1" :rules="rules250" label="Medidas de extinção apropriados" outlined required></v-text-field>
+                      <v-textarea v-model="extincao" counter label="Medidas de extinção"></v-textarea>
+                      <v-textarea v-model="perigo_esp" counter label="Perigos especifícos provenientes da substância ou mistura"></v-textarea>
+                      <v-textarea v-model="medidas_protecao" counter label="Medidas de proteção especiais para a equipe de combate à incêndio"></v-textarea>
+                      <!-- <v-text-field v-model="extincao" name="input-5-1" :rules="rules250" label="Medidas de extinção apropriados" outlined required></v-text-field>
                       <v-text-field v-model="perigo_esp" name="input-5-1" label="Perigos específicos da substância ou mistura:" outlined required></v-text-field>
-                      <v-text-field v-model="medidas_protecao" name="input-5-1" :rules="rules90" label="Medidas de proteção da equipe de combate a incêndio" outlined required></v-text-field>
+                      <v-text-field v-model="medidas_protecao" name="input-5-1" :rules="rules90" label="Medidas de proteção da equipe de combate a incêndio" outlined required></v-text-field> -->
                       <v-btn @click="e13 = 4" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 6"> Continue </v-btn>
                     </v-stepper-content>
@@ -216,10 +223,14 @@
                   <v-stepper-step editable step="6" complete> 6 - MEDIDAS DE CONTROLE PARA DERRAMAMENTO OU VAZAMENTO </v-stepper-step>
                     <v-stepper-content step="6">
                       <div style="width: 100%; height: 10px;"></div>
-                      <v-text-field v-model="servico_emergencia" name="input-5-1" :rules="rules500" label="Para o pessoal que não faz parte do serviço de emergência" outlined required></v-text-field>
+                      <v-textarea v-model="servico_emergencia" counter label="Para o pessoal que não faz parte do serviço de emergência"></v-textarea>
+                      <v-textarea v-model="servico_emergencia2" counter label="Para o pessoal do serviço de emergência"></v-textarea>
+                      <v-textarea v-model="precaucao_ambiente" counter label="Precauções para o meio ambiente"></v-textarea>
+                      <v-textarea v-model="metodos_materiais" counter label="Métodos e materiais para a contenção da limpeza"></v-textarea>
+                      <!-- <v-text-field v-model="servico_emergencia" name="input-5-1" :rules="rules500" label="Para o pessoal que não faz parte do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="servico_emergencia2" name="input-5-1" :rules="rules500" label="Para o pessoal do serviço de emergência" outlined required></v-text-field>
                       <v-text-field v-model="precaucao_ambiente" name="input-5-1" :rules="rules500" label="Precauções para o meio ambiente" outlined required></v-text-field>
-                      <v-text-field v-model="metodos_materiais" name="input-5-1" label="Métodos e materiais para a contenção da limpeza" outlined required></v-text-field>
+                      <v-text-field v-model="metodos_materiais" name="input-5-1" label="Métodos e materiais para a contenção da limpeza" outlined required></v-text-field> -->
                       <v-btn @click="e13 = 5" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 7"> Continue </v-btn>
                     </v-stepper-content>
@@ -227,9 +238,12 @@
                     <v-stepper-step editable step="7" complete> 7 - MANUSEIO E ARMAZENAMENTO </v-stepper-step>
                   <v-stepper-content step="7">
                     <div style="width: 100%; height: 10px;"></div>
-                    <v-text-field v-model="manuseio_seguro" name="input-5-1" :rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
+                      <v-textarea v-model="manuseio_seguro" counter label="Precauções para o manuseio seguro"></v-textarea>
+                      <v-textarea v-model="medidas_higiene" counter label="Medidas de higiene"></v-textarea>
+                      <v-textarea v-model="condicoes_armazenamento" counter label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade"></v-textarea>
+                      <!-- <v-text-field v-model="manuseio_seguro" name="input-5-1" :rules="rules500" label="Precauções para o manuseio seguro" outlined required></v-text-field>
                       <v-text-field v-model="medidas_higiene" name="input-5-1" :rules="rules500" label="Medidas de higiene" outlined required></v-text-field>
-                      <v-text-field v-model="condicoes_armazenamento" name="input-5-1" :rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field>
+                      <v-text-field v-model="condicoes_armazenamento" name="input-5-1" :rules="rules500" label="Condições de armazenamento seguro, incluindo qualquer incompatibilidade" outlined required></v-text-field> -->
                       <v-btn @click="e13 = 6" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 8"> Continue </v-btn>
                     </v-stepper-content>
@@ -239,7 +253,8 @@
                     <div style="width: 100%; height: 10px;"></div>
 
                       <v-textarea v-model="limitexposicao" counter label="Limite de exposição" :rules="rules500"></v-textarea>
-                      <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field>
+                      <v-textarea v-model="medcontroleng" counter label="Medidas de controle e engenharia"></v-textarea>
+                      <!-- <v-text-field v-model="medcontroleng" name="input-5-1" :rules="rules250" label="Medidas de controle e engenharia" outlined required></v-text-field> -->
                       <v-text-field v-model="polhos" name="input-5-1" :rules="rules90" label="Proteção para os olhos/face" outlined required></v-text-field>
                       <v-text-field v-model="ppele" name="input-5-1" :rules="rules90" label="Proteção da pele" outlined required></v-text-field>
                       <v-text-field v-model="prespiratoria" name="input-5-1" :rules="rules90" label="Proteção respiratória" outlined required></v-text-field>
@@ -252,13 +267,14 @@
                   <v-stepper-step editable step="9" complete> 9-PROPRIEDADES FISICAS E QUÍMICAS </v-stepper-step>
                   <v-stepper-content step="9">
                     <div style="width: 100%; height: 10px;"></div>
-                    <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
-                      <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor e limite de cor" outlined required></v-text-field>
+                      <v-text-field v-model="aspecto" name="input-5-1" :rules="rules45" label="Aspecto" outlined required></v-text-field>
+                      <v-text-field v-model="cor" name="input-5-1" :rules="rules45" label="Cor" outlined required></v-text-field>
+                      <v-text-field v-model="odor" name="input-5-1" :rules="rules45" label="Odor" outlined required></v-text-field>
                       <v-text-field v-model="ph" name="input-5-1" :rules="rules45" labell="pH" outlined required></v-text-field>
                       <v-text-field v-model="fusao" name="input-5-1" :rules="rules45" label="Ponto de fusão/ponto de congelamento" outlined required></v-text-field>
                       <v-text-field v-model="ebulicao" name="input-5-1" :rules="rules45" label="Ponto de ebulição" outlined required></v-text-field>
                       <v-text-field v-model="fulgor" name="input-5-1" :rules="rules45" label="Ponto de fulgor" outlined required></v-text-field>
-                      <v-text-field v-model="evaporacao" name="input-5-1" :rules="rules45" label="Taxa de evaporação" outlined required></v-text-field>
+                      <!-- <v-text-field v-model="evaporacao" name="input-5-1" :rules="rules45" label="Taxa de evaporação" outlined required></v-text-field> -->
                       <v-text-field v-model="inflamabilidade" name="input-5-1" :rules="rules45" label="Inflamabilidade" outlined required></v-text-field>
                       <v-text-field v-model="explosividade" name="input-5-1" :rules="rules45" label="Limite inferior/superior de inflamabilidade ou explosividade" outlined required></v-text-field>
                       <v-text-field v-model="pvapor" name="input-5-1" :rules="rules45" label="Pressão de vapor" outlined required></v-text-field>
@@ -268,7 +284,7 @@
                       <v-text-field v-model="particao" name="input-5-1" :rules="rules45" label="Coeficiente de -n-partição" outlined required></v-text-field>
                       <v-text-field v-model="autoignicao" name="input-5-1" :rules="rules45" label="Temperatura de autoignição" outlined required></v-text-field>
                       <v-text-field v-model="decomposicao" name="input-5-1" :rules="rules45" label="Temperatura de decomposição" outlined required></v-text-field>
-                      <v-text-field v-model="viscosidade" name="input-5-1" :rules="rules45" label="Viscosidade" outlined required></v-text-field>
+                      <v-text-field v-model="viscosidade" name="input-5-1" :rules="rules45" label="Viscosidade cinemática" outlined required></v-text-field>
                       <v-text-field v-model="particula" name="input-5-1" :rules="rules250" label="Características da partícula" outlined required></v-text-field>
                       <v-text-field v-model="informacoes" name="input-5-1" :rules="rules90" label="Outras informações" outlined required></v-text-field>
                       <div>
@@ -345,11 +361,16 @@
                   <v-stepper-step editable step="12" complete> 12-INFORMAÇÕES ECOLÓGICAS </v-stepper-step>
                     <v-stepper-content step="12">
                       <div style="width: 100%; height: 10px;"></div>
-                    <v-text-field v-model="ecotoxidade" name="input-5-1" :rules="rules500" label="Ecotoxidade" outlined required></v-text-field>
-                    <v-text-field v-model="degradabilidade" name="input-5-1" :rules="rules500" label="Persistência e degradabilidade" outlined required></v-text-field>
-                    <v-text-field v-model="bioacumulativo" name="input-5-1" :rules="rules500" label="Potencial bioacumulativo" outlined required></v-text-field>
-                    <v-text-field v-model="mobilidade" name="input-5-1" :rules="rules500" label="Mobilidade ao solo" outlined required></v-text-field>
-                    <v-text-field v-model="outros_efeitos" name="input-5-1" :rules="rules500" label="Outros efeitos adversos" outlined required></v-text-field>
+                      <v-textarea v-model="ecotoxidade" counter label="Ecotoxidade"></v-textarea>
+                      <v-textarea v-model="degradabilidade" counter label="Persistência e degradabilidade"></v-textarea>
+                      <v-textarea v-model="bioacumulativo" counter label="Potencial bioacumulativo"></v-textarea>
+                      <v-textarea v-model="mobilidade" counter label="Mobilidade ao solo"></v-textarea>
+                      <v-textarea v-model="outros_efeitos" counter label="Outros efeitos adversos"></v-textarea>
+                      <!-- <v-text-field v-model="ecotoxidade" name="input-5-1" :rules="rules500" label="Ecotoxidade" outlined required></v-text-field>
+                      <v-text-field v-model="degradabilidade" name="input-5-1" :rules="rules500" label="Persistência e degradabilidade" outlined required></v-text-field>
+                      <v-text-field v-model="bioacumulativo" name="input-5-1" :rules="rules500" label="Potencial bioacumulativo" outlined required></v-text-field>
+                      <v-text-field v-model="mobilidade" name="input-5-1" :rules="rules500" label="Mobilidade ao solo" outlined required></v-text-field>
+                      <v-text-field v-model="outros_efeitos" name="input-5-1" :rules="rules500" label="Outros efeitos adversos" outlined required></v-text-field> -->
 
                     <div>
                       <p style="color:blue; font-size: 20px">LINKS DE APOIO</p>
@@ -461,12 +482,13 @@ export default {
             prespiratoria:'',
             ptermicos:'',
             aspecto:'',
+            cor:'',
             odor:'',
             ph:'',
             fusao:'',
             ebulicao:'',
             fulgor:'',
-            evaporacao:'',
+            // evaporacao:'',
             inflamabilidade:'',
             explosividade:'',
             pvapor:'',
@@ -604,7 +626,7 @@ export default {
               { text: 'Formula Molecular', value: 'fm',class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Peso Molecular', value: 'pm', class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Classificação', value: 'classif', class:'blue lighten-3 subtitle-1 font-weight-black' },
-              { text: 'Concentração (M/M)', value: 'cmm', class:'blue lighten-3 subtitle-1 font-weight-black' },
+              { text: 'Concentração %', value: 'cmm', class:'blue lighten-3 subtitle-1 font-weight-black' },
               { text: 'Actions', value: 'actions', sortable: false, class:'blue lighten-3 subtitle-1 font-weight-black' },
             ],
             
@@ -751,12 +773,13 @@ export default {
                 this.prespiratoria = response.data.fispq.prespiratoria;
                 this.ptermicos = response.data.fispq.ptermicos;
                 this.aspecto = response.data.fispq.aspecto;
+                this.cor = response.data.fispq.cor;
                 this.odor = response.data.fispq.odor;
                 this.ph = response.data.fispq.ph;
                 this.fusao = response.data.fispq.fusao;
                 this.ebulicao = response.data.fispq.ebulicao;
                 this.fulgor = response.data.fispq.fulgor;
-                this.evaporacao = response.data.fispq.evaporacao;
+                // this.evaporacao = response.data.fispq.evaporacao;
                 this.inflamabilidade = response.data.fispq.inflamabilidade;
                 this.explosividade = response.data.fispq.explosividade;
                 this.pvapor = response.data.fispq.pvapor;
@@ -866,12 +889,13 @@ export default {
                 prespiratoria: this.prespiratoria,
                 ptermicos: this.ptermicos,
                 aspecto: this.aspecto,
+                cor: this.cor,
                 odor: this.odor,
                 ph: this.ph,
                 fusao: this.fusao,
                 ebulicao: this.ebulicao,
                 fulgor: this.fulgor,
-                evaporacao: this.evaporacao,
+                // evaporacao: this.evaporacao,
                 inflamabilidade: this.inflamabilidade,
                 explosividade: this.explosividade,
                 pvapor: this.pvapor,

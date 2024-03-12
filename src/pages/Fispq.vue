@@ -36,7 +36,7 @@
                         </v-icon>
                     </v-btn>
 
-                    <v-btn class="mx-2" fab dark small color="primary" @click="downloadPDF(item.idFispq)">
+                    <v-btn class="mx-2" fab dark small color="primary" @click="downloadPDF(item.idFispq, item.cod_int)">
                         <v-icon dark>
                             picture_as_pdf
                         </v-icon>
@@ -92,7 +92,7 @@ export default {
                 { text: 'PRODUTO', align: 'start', value: 'produto', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'ONU', align: 'start', value: 'onu', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 // { text: 'NOME APROPRIADO PARA EMBARQUE', align: 'start', value: 'nome_embarque', class:'blue lighten-3 subtitle-1 font-weight-black' },
-                { text: 'DATA DE CRIAÇÃO', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
+                // { text: 'DATA DE CRIAÇÃO', align: 'start', value: 'created_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'DATA DE ATUALIZAÇÃO', align: 'start', value: 'update_at', class:'blue lighten-3 subtitle-1 font-weight-black' },
                 { text: 'AÇÕES', align: 'start', value: 'actions', class:'blue lighten-3 subtitle-1 font-weight-black' }
             ],
@@ -118,7 +118,7 @@ export default {
                         onu: fispq.onu,
                         // nome_embarque: fispq.nome_embarque,
                         // created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'UTC' }) : null,
-                        created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
+                        // created_at: fispq.created_at ? new Date(fispq.created_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
                         update_at: fispq.update_at ? new Date(fispq.update_at).toLocaleString('pt-br', { timeZone: 'America/Sao_Paulo' }) : null,
                     }
                 });
@@ -136,13 +136,13 @@ export default {
                 console.log(err)
             }
         },
-        async downloadPDF(id_Fispq) {
+        async downloadPDF(id_Fispq, cod_int) {
             try {
                 const result = await FispqService.gerarPDF(id_Fispq);
 
                 const link = document.createElement('a');
                 link.href = window.URL.createObjectURL(new Blob([result.data]));
-                link.setAttribute('download', `fispq_${id_Fispq}.pdf`);
+                link.setAttribute('download', `fispq_${cod_int}.pdf`);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
