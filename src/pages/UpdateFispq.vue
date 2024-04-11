@@ -405,18 +405,22 @@
                         <v-text-field v-model="classe" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="n_risco" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="grupo_emb" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="pmambiente" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
                         <!-- <v-textarea v-model="hidroviario" counter label="HIDROVIÁRIO" :rules="rules500"></v-textarea> -->
                         <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classeh" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoh" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="embalagemh" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="pmambienteh" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
                         <!-- <v-textarea v-model="aereo" counter label="AÉREO" :rules="rules500"></v-textarea> -->
                         <v-text-field v-model="onua" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarquea" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classea" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoa" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="embalagema" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="pmambientea" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
+                        <v-text-field v-model="mceprecaucao" name="input-5-1" label="Medidas e condições específicas de precaução" outlined required></v-text-field>
                       </v-container>
                       
                       <v-btn @click="e13 = 13" style="background: yellow; margin: 15px">Voltar</v-btn>
@@ -567,6 +571,10 @@ export default {
             substancias: [],
             particula:'',
             versao:'',
+            pmambiente:'',
+            pmambienteh:'',
+            pmambientea:'',
+            mceprecaucao:'',
 
             e13: 1,
             dialog: false,
@@ -841,7 +849,11 @@ export default {
                 this.selectedClassificacao = response.data.fispq.ids_frases_perigo;
                 this.todas_frases_classificacao = response.data.fispq.todas_frases_classificacao;
                 this.versao = response.data.fispq.versao;
-                this.particula = response.data.fispq.particula
+                this.particula = response.data.fispq.particula;
+                this.pmambiente = response.data.fispq.pmambiente;
+                this.pmambienteh = response.data.fispq.pmambiente;
+                this.pmambientea = response.data.fispq.pmambiente;
+                this.mceprecaucao = response.data.fispq.mceprecaucao
 
             } catch (err) {
                 this.fispqs = [];
@@ -957,7 +969,11 @@ export default {
                 pictogramas:this.pictogramas.join(","),
                 todas_frases_classificacao: this.todas_frases_classificacao, 
                 versao: this.versao,
-                particula: this.particula
+                particula: this.particula,
+                pmambiente: this.pmambiente,
+                pmambienteh: this.pmambiente,
+                pmambientea: this.pmambiente,
+                mceprecaucao: this.mceprecaucao,
                 }
 
                 // idfispqRules: [

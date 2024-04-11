@@ -421,6 +421,8 @@
                         <v-text-field v-model="classe" name="input-5-1" :rules="rules125" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="n_risco" name="input-5-1" :rules="rules45" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="grupo_emb" name="input-5-1" :rules="rules45" label="Grupo de embalagem" outlined required></v-text-field>
+                        <v-text-field v-model="pmambiente" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
+                        <v-text-field v-model="mceprecaucao" name="input-5-1" label="Medidas e condições específicas de precaução" outlined required></v-text-field>
                         <!-- <v-textarea v-model="hidroviario" counter label="HIDROVIÁRIO"></v-textarea> -->
                         <!-- <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
                         <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field> -->
@@ -533,7 +535,7 @@ export default {
       bioacumulativo:'Não disponível',
       mobilidade:'Não disponível',
       outros_efeitos:'Não disponível',
-      destinacaofinal:'No tratamento e disposição do produto, de seus restos e de embalagens usadas, devem-se seguir as orientações da legislação nas esferas municipal, estadual e federal. Recomenda-se queimar em um incinerador químico equipado com pós-combustor e purificador de gases, mas tomar precauções adicionais ao colocar esse material em ignição, visto que é altamente inflamável. Observar todos os regulamentos ambientais federais, estaduais e locais.',
+      destinacaofinal:'No tratamento e disposição do produto, de seus restos e de embalagens usadas, devem-se seguir as orientações da legislação nas esferas municipal, estadual e federal. Recomenda-se queimar em um incinerador químico equipado com pós-combustor e purificador de gases. Observar todos os regulamentos ambientais federais, estaduais e locais.',
       terrestre: 'TERRESTRE: \nResolução n° 5.947 de 01 de junho de 2021 da Agência Nacional de Transportes Terrestres (ANTT), Atualiza o Regulamento para o Transporte Rodoviário de Produtos Perigosos e aprova as suas Instruções Complementares, e dá outras providências',
       onu:'',
       nome_embarque:'',
@@ -578,6 +580,10 @@ export default {
       condicoes_armazenamento:'',
       particula:'Não aplicável',
       versao: 1,
+      pmambiente:'',
+      pmambienteh:'',
+      pmambientea:'',
+      mceprecaucao:'',
 
       e13: 1,
       dialog: false,
@@ -858,7 +864,10 @@ export default {
                   todas_frases_classificacao: this.todas_frases_classificacao, 
                   ids_frases_perigo: this.selectedClassificacao.join(","),
                   versao: this.versao,
-                  particula: this.particula
+                  particula: this.particula,
+                  pmambiente:this.pmambiente,
+                  mceprecaucao:this.mceprecaucao,
+
               } 
               await FispqService.add(data);
            
