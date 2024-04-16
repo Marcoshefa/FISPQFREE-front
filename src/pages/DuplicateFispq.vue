@@ -17,6 +17,24 @@
               <v-stepper-step editable step="1" complete> 1-IDENTIFICAÇÃO </v-stepper-step>
                   <v-stepper-content step="1">
                     <div style="width: 100%; height: 10px;"></div>
+                    <p>Empresa</p>
+                      <v-radio-group
+                        v-model="empresa"
+                        mandatory
+                      >
+                        <v-radio
+                          label="Specsol"
+                          value="specsol"
+                        ></v-radio>
+                        <v-radio
+                          label="Qhemis"
+                          value="qhemis"
+                        ></v-radio>
+                        <v-radio
+                          label="Mettler Toledo"
+                          value="mettler"
+                        ></v-radio>
+                      </v-radio-group>
                       <v-text-field v-model="cod_int" :rules="rules20" name="input-5-1" counter="20" label="Cód. interno" outlined required></v-text-field>
                       <v-text-field v-model="produto" name="input-5-1" :rules="rules90" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
                       <v-text-field v-model="uso" name="input-5-1" :rules="rules90" counter="90" label="Principais usos recomendados para a substância ou mistura:" outlined required></v-text-field>
@@ -583,6 +601,8 @@ export default {
             dialog: false,
             dialogDelete: false,
 
+            empresa:'',
+
             pictogramas_disponiveis: [
             {
                 name: 'explosivo',
@@ -855,7 +875,8 @@ export default {
                 this.pmambiente = response.data.fispq.pmambiente;
                 this.pmambienteh = response.data.fispq.pmambiente;
                 this.pmambientea = response.data.fispq.pmambiente;
-                this.mceprecaucao = response.data.fispq.mceprecaucao
+                this.mceprecaucao = response.data.fispq.mceprecaucao;
+                this.empresa = response.data.fispq.empresa;
 
             } catch (err) {
                 this.fispqs = [];
@@ -965,7 +986,8 @@ export default {
                   particula: this.particula,
                   versao: 1,
                   pmambiente: this.pmambiente,
-                  mceprecaucao: this.mceprecaucao
+                  mceprecaucao: this.mceprecaucao,
+                  empresa: this.empresa
               } 
               await FispqService.duplicate(duplic);
                 this.finish = true;

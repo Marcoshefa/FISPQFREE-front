@@ -13,6 +13,24 @@
               <v-stepper-step editable step="1" complete> 1 - IDENTIFICAÇÃO </v-stepper-step>
               <v-stepper-content step="1" >
                     <div style="width: 100%; height: 10px;"></div>
+                    <p>Empresa</p>
+                      <v-radio-group
+                        v-model="empresa"
+                        mandatory
+                      >
+                        <v-radio
+                          label="Specsol"
+                          value="specsol"
+                        ></v-radio>
+                        <v-radio
+                          label="Qhemis"
+                          value="qhemis"
+                        ></v-radio>
+                        <v-radio
+                          label="Mettler Toledo"
+                          value="mettler"
+                        ></v-radio>
+                      </v-radio-group>
                       <v-text-field v-model="cod_int" :rules="rules50" name="input-5-1" counter="20" label="Cód. interno" outlined required></v-text-field>
                       <v-text-field v-model="produto" name="input-5-1" :rules="rules500" counter="90" label="Nome da substância ou mistura" outlined required></v-text-field>
                       <v-text-field v-model="uso" name="input-5-1" :rules="rules250" counter="90" label="Principais usos recomendados para a substância ou mistura:" outlined required></v-text-field>
@@ -589,6 +607,8 @@ export default {
       dialog: false,
       dialogDelete: false,
 
+      empresa: null,
+
 
       pictogramas_disponiveis: [
       {
@@ -867,6 +887,7 @@ export default {
                   particula: this.particula,
                   pmambiente:this.pmambiente,
                   mceprecaucao:this.mceprecaucao,
+                  empresa:this.empresa,
 
               } 
               await FispqService.add(data);
