@@ -13,7 +13,7 @@
 
         <div class="box-inputs">
           <input type="email" placeholder="Digite seu e-mail" v-model="email" />
-          <input type="password" placeholder="Digite sua Senha" v-model="password" />
+          <input type="password" placeholder="Digite sua Senha" v-model="password" @keyup.enter="logar"/>
         </div>
 
         <v-alert v-if="alerta !== ''" border="top" min-width="300px" class="text-center" color="red lighten-2" dark>
