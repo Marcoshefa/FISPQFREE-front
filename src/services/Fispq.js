@@ -20,9 +20,13 @@ export default {
         return Api({}).post('/fispq/comp/', data)
     },
 
-    delete(id) {
-        return Api({}).delete('/fispq/' + id)
+    delete(cod_int) {
+        return Api({}).delete('/fispq/' + cod_int)
     },
+
+    // delete(id) {
+    //     return Api({}).delete('/fispq/' + id)
+    // },
 
     getOne(id) {
         return Api({}).get('/fispq/' + id)

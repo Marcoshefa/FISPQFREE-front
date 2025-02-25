@@ -73,12 +73,13 @@ export default {
 <style scoped>
 
 .fundo img#tela {
-  width: 1920px;
-  height: 930px;
+  width: 100vw;
+  height: 100vh;
+
 }
 
 .fundo {
-  background: url("../assets/images/tela.png");
+  /* background: url("../assets/images/tela.png"); */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -87,9 +88,9 @@ export default {
 
 /* .fundo .container .form img#logo{
   width: 200px;
-} */
+}
 
-/* .fundo .login img#background_title{
+.fundo .login img#background_title{
     width: 700px;
     margin-top: 50px;
     margin-left: 60px;

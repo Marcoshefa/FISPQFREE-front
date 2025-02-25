@@ -44,7 +44,7 @@
                     
                         <!-- <template v-slot:activator="{ on, attrs }"> -->
                             <!-- <v-btn class="mx-2" fab dark small color="red" v-bind="attrs" v-on="on"> -->
-                    <v-btn class="mx-2" fab dark small color="red" @click="dialogCancelar = true; idParaCancelar = item.idFispq;">
+                    <v-btn class="mx-2" fab dark small color="red" @click="dialogCancelar = true; idParaCancelar = item.cod_int;">
                         <v-icon dark>
                             delete
                         </v-icon>
@@ -126,9 +126,12 @@ export default {
                 this.fispqs = [];
             }
         },
-        async excluirFispq(id_Fispq) {
+        // async excluirFispq(id_Fispq) {
+        //     try {
+        //         await FispqService.delete(id_Fispq);
+        async excluirFispq(cod_int) {
             try {
-                await FispqService.delete(id_Fispq);
+                await FispqService.delete(cod_int);
                 this.dialogCancelar = false;
                 this.getFispq();
 
