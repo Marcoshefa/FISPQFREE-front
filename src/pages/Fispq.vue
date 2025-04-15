@@ -145,7 +145,7 @@ export default {
 
                 const link = document.createElement('a');
                 link.href = window.URL.createObjectURL(new Blob([result.data]));
-                link.setAttribute('download', `fispq_${cod_int}.pdf`);
+                link.setAttribute('download', `FDS_${cod_int}.pdf`);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);

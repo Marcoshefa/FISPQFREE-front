@@ -353,6 +353,9 @@
                       <p style="color:blue; font-size: 20px">LINKS DE APOIO</p>
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
+                    <div>
+                      <a href ="https://gestis-database.dguv.de/" target="_blank">gestis</a>
+                    </div>
 
                       <v-btn @click="e13 = 9" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 11"> Continue </v-btn>
@@ -562,13 +565,13 @@ export default {
       grupo_emb:'',
       hidroviario:'DPC - Diretoria de Portos e Costas (transporte de águas brasileiras)\nNormas de autoridade Marítima (NORMAM)\nNORMAM 01/DPC: Embarcações empregada na Navegação em Mar Aberto\nNORMAM 02/DPC: Embarcações Empregadas na Navegação Interior\nIMO - "International Maritime Organization" (Organização Marítima Internacional)\nInternational Maritime Dangerous Googs Code(IMDG Code)',
       onuh:'',
-      embarqueh:'',
+      nome_embarque_h:'',
       classeh:'',
       riscoh:'',
       embalagemh:'',
       aereo: 'AÉREO\nANAC - Agência Nacional de Aviação Civil - Resolução n°129 de 8 de dezembro de 2009.\nRBAC N°175 - REGULAMENTO BRASILEIRO DA AVIAÇÃO CIVIL - TRANSPORTE DE ARTIGOS PERIGOSOS EM AERONAVES CIVIS./n IS N° 175-001-INSTRUÇÃO SUPLEMENTAR IS\n ICAO - "International Civil Aviation Organization"(Organização da Aviação Civil Internacional)-DOC 9284-na/905\nIATA - "International Air Transport Association" (Associação Internacional de Transporte Aéreo)\nDangerous Goods Regulation (DGR)',
       onua:'',
-      embarquea:'',
+      nome_embarque_a:'',
       classea:'',
       riscoa:'',
       embalagema:'',
@@ -602,6 +605,7 @@ export default {
       pmambienteh:'',
       pmambientea:'',
       mceprecaucao:'',
+
 
       e13: 1,
       dialog: false,
@@ -888,6 +892,9 @@ export default {
                   pmambiente:this.pmambiente,
                   mceprecaucao:this.mceprecaucao,
                   empresa:this.empresa,
+                  nome_embarque_h:this.nome_embarque_h,
+                  nome_embarque_a:this.nome_embarque_a,
+
 
               } 
               await FispqService.add(data);
@@ -935,13 +942,12 @@ export default {
                 this.precaucao_ambiente = response.data['frases']['6.3'];
                 this.metodos_materiais = response.data['frases']['6.4'];
                 this.manuseio_seguro = response.data['frases']['7.1'];
-                this.medidas_higiene = response.data['frases']['7.2']
-                this.condicoes_armazenamento = response.data['frases']['7.3']
-                this.nome_embarque = response.data['Nome_aprop'][2]
-                this.onuh = response.data['numero_onu']
-                this.embarqueh = response.data['Nome_aprop'][2]
-                this.onua = response.data['numero_onu']
-                this.embarquea = response.data['Nome_aprop'][2]
+                this.medidas_higiene = response.data['frases']['7.2'];
+                this.condicoes_armazenamento = response.data['frases']['7.3'];
+                this.nome_embarque = response.data['Nome_aprop'][2];
+                this.nome_embarque_h = response.data['Nome_aprop_h1'];
+                this.nome_embarque_a = response.data['Nome_aprop_a1'];
+
 
             } catch (err) {
               console.log(err)

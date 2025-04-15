@@ -338,6 +338,9 @@
                       <p style="color:blue; font-size: 20px">LINKS DE APOIO</p>
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
+                    <div>
+                      <a href ="https://gestis-database.dguv.de/" target="_blank">gestis</a>
+                    </div>
 
                       <v-btn @click="e13 = 9" style="background: yellow; margin: 15px">Voltar</v-btn>
                       <v-btn color="primary" @click="e13 = 11"> Continue </v-btn>
@@ -397,6 +400,7 @@
                     <div>
                       <a href ="https://pubchem.ncbi.nlm.nih.gov/" target="_blank">PubChem</a>
                     </div>
+                    
 
                     <v-btn @click="e13 = 11" style="background: yellow; margin: 15px">Voltar</v-btn>
                     <v-btn color="primary" @click="e13 = 13"> Continue </v-btn>
@@ -426,14 +430,14 @@
                         <v-text-field v-model="pmambiente" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
                         <!-- <v-textarea v-model="hidroviario" counter label="HIDROVIÁRIO" :rules="rules500"></v-textarea> -->
                         <v-text-field v-model="onuh" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarqueh" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
+                        <v-text-field v-model="nome_embarque_h" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classeh" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoh" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="embalagemh" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
                         <v-text-field v-model="pmambienteh" name="input-5-1" label="Perigos ao meio ambiente" outlined required></v-text-field>
                         <!-- <v-textarea v-model="aereo" counter label="AÉREO" :rules="rules500"></v-textarea> -->
                         <v-text-field v-model="onua" name="input-5-1" :rules="rules500" label="Número ONU" outlined required></v-text-field>
-                        <v-text-field v-model="embarquea" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
+                        <v-text-field v-model="nome_embarque_a" name="input-5-1" :rules="rules500" label="Nome apropriado para embarque" outlined required></v-text-field>
                         <v-text-field v-model="classea" name="input-5-1" :rules="rules500" label="Classe/Subclasse" outlined required></v-text-field>
                         <v-text-field v-model="riscoa" name="input-5-1" :rules="rules500" label="Número de risco" outlined required></v-text-field>
                         <v-text-field v-model="embalagema" name="input-5-1" :rules="rules500" label="Grupo de embalagem" outlined required></v-text-field>
@@ -551,13 +555,13 @@ export default {
             grupo_emb: '',
             hidroviario: '',
             onuh: '',
-            embarqueh: '',
+            nome_embarque_h: '',
             classeh: '',
             riscoh: '',
             embalagemah: '',
             aereo: '',
             onua: '',
-            embarquea: '',
+            nome_embarque_a: '',
             classea: '',
             riscoa: '',
             embalagema: '',
@@ -848,13 +852,13 @@ export default {
                 this.grupo_emb = response.data.fispq.grupo_emb;
                 this.hidroviario = response.data.fispq.hidroviario;
                 this.onuh = response.data.fispq.onu;
-                this.embarqueh = response.data.fispq.nome_embarque;
+                this.nome_embarque_h = response.data.fispq.nome_embarque_h;
                 this.classeh = response.data.fispq.classe;
                 this.riscoh = response.data.fispq.n_risco;
                 this.embalagemh = response.data.fispq.grupo_emb;
                 this.aereo = response.data.fispq.aereo;
                 this.onua = response.data.fispq.onu;
-                this.embarquea = response.data.fispq.nome_embarque;
+                this.nome_embarque_a = response.data.fispq.nome_embarque_a;
                 this.classea = response.data.fispq.classe;
                 this.riscoa = response.data.fispq.n_risco;
                 this.embalagema = response.data.fispq.grupo_emb;
@@ -970,13 +974,13 @@ export default {
                 grupo_emb: this.grupo_emb,
                 hidroviario: this.hidroviario,
                 onuh: this.onu,
-                embarqueh: this.nome_embarque,
+                nome_embarque_h: this.nome_embarque_h,
                 classeh: this.classe,
                 riscoh: this.n_risco,
                 embalagemh: this.grupo_emb,
                 aereo: this.aereo,
                 onua: this.onu,
-                nome_embarquea: this.nome_embarque,
+                nome_embarque_a: this.nome_embarque_a,
                 classea: this.classe,
                 riscoa: this.n_risco,
                 embalagema: this.grupo_emb,
